@@ -1,0 +1,50 @@
+{
+  "name": "surreal-ocean",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"next dev\" \"redis-server ./app/_lib/_cache/redis.conf\" \"postgres -D ./db\"",
+    "migrate": "concurrently \"postgres -D ./db\" \"npx prisma migrate dev --name migrate\"",
+    "postmigrate": "npx @snaplet/seed sync",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.14.0",
+    "@tabler/icons-react": "^3.5.0",
+    "@uidotdev/usehooks": "^2.4.1",
+    "bloom-filters": "^3.0.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
+    "next": "14.2.3",
+    "prisma": "^5.14.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "redis": "^4.6.14",
+    "redis-om": "^0.4.3",
+    "ts-node": "^10.9.2",
+    "typewriter-effect": "^2.21.0"
+  },
+  "devDependencies": {
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "^0.97.20",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.12.0",
+    "typescript": "^5"
+  },
+  "prisma": {
+    "schema": "app/_lib/_orm/prisma/schema.prisma",
+    "seed": "tsx prisma/seed/seed.ts"
+  },
+  "@snaplet/seed": {
+    "config": "prisma/seed/seed.config.ts"
+  }
+}

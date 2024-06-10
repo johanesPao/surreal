@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Cornerstone";
+    src: local("Cornerstone"),
+      url(Cornerstone.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Space Mono";
+    src: local("Space Mono"),
+      url(SpaceMono-Regular.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Space Mono Bold";
+    src: local("Space Mono Bold"),
+      url(SpaceMono-Bold.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Space Mono Italic";
+    src: local("Space Mono Italic"),
+      url(SpaceMono-Italic.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Mosk 100";
+    src: local("Mosk 100"),
+      url(Mosk\ Thin\ 100.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Mosk 200";
+    src: local("Mosk 200"),
+      url(Mosk\ Extra-Light\ 200.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Mosk 300";
+    src: local("Mosk 300"),
+      url(Mosk\ Light\ 300.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Mosk 400";
+    src: local("Mosk 400"),
+      url(Mosk\ Normal\ 400.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Mosk 500";
+    src: local("Mosk 500"),
+      url(Mosk\ Medium\ 500.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Regular";
+    src: local("Fivo Regular"),
+      url(FivoSans-Regular.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Bold";
+    src: local("Fivo Bold"),
+      url(FivoSans-Bold.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Bold Italic";
+    src: local("Fivo Bold Italic"),
+      url(FivoSans-Bold-Oblique.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Italic";
+    src: local("Fivo Italic"),
+      url(FivoSans-Oblique.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Thin Italic";
+    src: local("Fivo Thin Italic"),
+      url(FivoSans-Thin-Oblique.otf) format("opentype");
+  }
+  
+  @font-face {
+    font-family: "Fivo Thin";
+    src: local("Fivo Thin"),
+      url(FivoSans-Thin.otf) format("opentype");
+  }

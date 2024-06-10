@@ -1,0 +1,59 @@
+// File schema prisma untuk main page (blog)
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = "debian-openssl-3.0.x"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pengguna {
+  idPengguna            String              @id @default(uuid()) @map("id_pengguna")
+  namaPengguna          String              @unique @map("nama_pengguna")
+  kataKunci             String              @map("kata_kunci")
+  email                 String              @unique
+  admin                 Boolean             @default(false)
+  penulis               Penulis?
+  tulisan               Tulisan[]
+  @@map("pengguna")
+}
+
+model Penulis {
+  idPenulis             String              @id @default(uuid()) @map("id_penulis")
+  namaPena              String              @map("nama_pena")
+  pengguna              Pengguna            @relation(fields: [idPengguna], references: [idPengguna])
+  idPengguna            String              @unique @map("id_pengguna")
+  @@map("penulis")
+}
+
+model Tulisan {
+  idTulisan             String              @id @default(uuid()) @map("id_tulisan")
+  judul                 String
+  dibuat                DateTime            @default(now())
+  dimodifikasi          DateTime            @updatedAt
+  pengguna              Pengguna            @relation(fields: [idPengguna], references: [idPengguna])
+  idPengguna            String              @map("id_pengguna")
+  konten                String?
+  diterbitkan           Boolean             @default(false)
+  kategori              Kategori[]
+  komentar              Komentar[]
+  @@map("tulisan")
+}
+
+model Kategori {
+  idKategori            String              @id @default(uuid()) @map("id_kategori")
+  nama                  String
+  koleksiTulisan        Tulisan[]
+  @@map("kategori")
+}
+
+model Komentar {
+  idKomentar            String              @id @default(uuid()) @map("id_komentar")
+  komentar              String?
+  tulisan               Tulisan             @relation(fields: [idTulisan], references: [idTulisan])
+  idTulisan             String              @map("id_tulisan")
+  @@map("komentar")
+}
