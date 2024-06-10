@@ -28,7 +28,7 @@ export default function RootLayout({
             <div className="sticky lg:fixed top-0 left-0">
                 <Header />
             </div>
-            <div className="px-5 py-5 fixed top-[200px] lg:top-0 lg:left-[350px] h-[calc(100vh-200px)] lg:h-full w-full lg:w-[calc(100vw-350px)]">
+            <div className="px-5 py-5 relative lg:top-0 lg:left-[350px] h-[calc(100vh-200px)] lg:h-full w-full lg:w-[calc(100vw-350px)]">
                 {children}
             </div>
         </div>

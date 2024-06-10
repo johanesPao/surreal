@@ -99,7 +99,7 @@ const Header = () => {
   }
 
   return (
-    <div className="flex flex-col h-[200px] lg:w-[350px] lg:h-screen bg-stone-900 px-10 lg:pr-3 py-5 text-center lg:text-right items-center lg:items-end lg:gap-1 lg:justify-between">
+    <div className="flex flex-col lg:w-[350px] lg:h-screen bg-stone-900 px-10 lg:pr-3 py-5 text-center lg:text-right items-center lg:items-end lg:gap-1 lg:justify-between">
         <motion.div 
           className="flex flex-col lg:h-1/3"
           variants={varian}
