@@ -1,4 +1,4 @@
-export { getSemuaPengguna, postPengguna }
+export { getSemuaPengguna, postPengguna, getDaftarTulisanDiterbitkan }
 
 import { PrismaClient } from '@prisma/client'
 import { cache } from 'react'
@@ -50,33 +50,17 @@ async function postPengguna() {
     )
 }
 
-// function bukaKoneksi() {
-//     return new PrismaClient()
-// }
-
-// async function tutupKoneksi(prisma: PrismaClient) {
-//     return await prisma.$disconnect()
-// }
-
-// async function getSemuaPengguna() {
-//     const prisma = bukaKoneksi()
-//     const semuaPengguna = await prisma.pengguna.findMany()
-//     console.log(semuaPengguna)
-// }
-
-// async function postPengguna() {
-//     const prisma = bukaKoneksi()
-//     const penggunaTerbuat = await prisma.pengguna.create({
-//         data: {
-//             namaPengguna: 'jpao',
-//             kataKunci: '@kmb583030',
-//             email: 'johanes.pao@gmail.com',
-//             admin: true,
-//             penulis: {
-//                 create: {
-//                     namaPena: 'Johanes Indra Pradana Pao'
-//                 }
-//             }
-//         }
-//     })
-// }
+async function getDaftarTulisanDiterbitkan() {
+    return await denganPrisma((prisma) => prisma.tulisan.findMany({
+        where: {
+            diterbitkan: true
+        },
+        take: 10,
+        orderBy: {
+            dimodifikasi: 'desc'
+        },
+        include: {
+            kategori: true
+        }
+    }))
+}
