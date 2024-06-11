@@ -35,6 +35,7 @@ CREATE TABLE "tulisan" (
 CREATE TABLE "kategori" (
     "id_kategori" TEXT NOT NULL,
     "nama" TEXT NOT NULL,
+    "warna" TEXT NOT NULL,
 
     CONSTRAINT "kategori_pkey" PRIMARY KEY ("id_kategori")
 );

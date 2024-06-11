@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://jpao:@Kissmebaby583030@localhost:5432/surreal?schema=blog" // env("DATABASE_URL")
 }
 
 model Pengguna {
@@ -46,6 +46,7 @@ model Tulisan {
 model Kategori {
   idKategori            String              @id @default(uuid()) @map("id_kategori")
   nama                  String
+  warna                 String
   koleksiTulisan        Tulisan[]
   @@map("kategori")
 }

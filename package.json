@@ -27,8 +27,6 @@
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
-    "@snaplet/copycat": "^5.0.0",
-    "@snaplet/seed": "^0.97.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -42,9 +40,6 @@
   },
   "prisma": {
     "schema": "app/_lib/_orm/prisma/schema.prisma",
-    "seed": "tsx prisma/seed/seed.ts"
-  },
-  "@snaplet/seed": {
-    "config": "prisma/seed/seed.config.ts"
+    "seed": "npx tsx prisma/seed.ts"
   }
 }
