@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://jpao:@Kissmebaby583030@localhost:5432/surreal?schema=blog" // env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Pengguna {
