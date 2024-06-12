@@ -24,11 +24,11 @@ export default function RootLayout({
         </title>
       </head>
       <body>
-        <div className="flex lg:flex-row flex-col bg-primer w-screen h-screen py-0 px-0">
-            <div className="sticky lg:fixed top-0 left-0">
+        <div className="grid grid-flow-row-dense lg:flex lg:flex-row bg-primer w-screen py-0 px-0 h-screen">
+            <div className="row-start-1 lg:col-start-1 sticky lg:fixed lg:top-0 lg:left-0">
                 <Header />
             </div>
-            <div className="px-5 py-5 relative lg:top-0 lg:left-[350px] h-[calc(100vh-200px)] lg:h-full w-full lg:w-[calc(100vw-350px)]">
+            <div className="row-start-2 lg:col-start-2 lg:relative overflow-y-scroll px-5 py-5 lg:top-0 lg:left-[350px] lg:h-full w-full lg:w-[calc(100vw-350px)]">
                 {children}
             </div>
         </div>

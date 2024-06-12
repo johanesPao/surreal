@@ -75,8 +75,6 @@ const Header = () => {
 
   const {nama, jabatan, infoDeskripsi, tahun, bulan, hari, dataKontak} = defaultHeaderProps
 
-  console.log(diDesktop)
-
   const varian: Variants = {
     headAwal: diDesktop ? { 
       x: -80, 

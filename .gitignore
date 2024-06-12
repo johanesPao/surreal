@@ -41,4 +41,6 @@ next-env.d.ts
 # db
 db/
 
+redis-dump.rdb
+
 
