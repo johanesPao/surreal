@@ -1,15 +1,13 @@
 'use client'
 
-import { Tulisan } from "@prisma/client"
 import { useEffect, useState } from "react"
-import { getDaftarTulisanDiterbitkan } from "../_lib/_db/postgresql"
-import { GET } from "../api/tulisan/route"
 import { ResponDaftarTulisanDiterbitkan } from "../_interface-props/_hasil.props"
 import TulisanCard from "./TulisanCard"
+import { Variants, motion } from "framer-motion"
 
 const DaftarTulisan = () => {
     const [memuat, setMemuat] = useState(false)
-    const [daftarTulisan, setDaftarTulisan] = useState<ResponDaftarTulisanDiterbitkan[]>([])
+    const [daftarTulisan, setDaftarTulisan] = useState<ResponDaftarTulisanDiterbitkan[] | null>(null)
 
     useEffect(() => {
         setMemuat(true)
@@ -30,17 +28,50 @@ const DaftarTulisan = () => {
         setMemuat(false)
     }, [])
 
+    const motionKontainer: Variants = {
+        takTerlihat: { 
+            opacity: 0 
+        },
+        terlihat: { 
+            opacity: 1, 
+            transition: { 
+                staggerChildren: 0.3,
+                duration: 2
+            }
+        }
+    }
+
+    const motionTulisan: Variants = {
+        takTerlihat: {
+            opacity: 0,
+            y: 100
+        },
+        terlihat: {
+            opacity: 1,
+            y: 0
+        }
+    }
+
     return (
         <>
             {memuat ? "Memuat..." : 
-                    daftarTulisan.map(tulisan => {
-                        return (
-                            <TulisanCard
-                                key={tulisan.idTulisan}
-                                tulisan={tulisan}
-                            />
-                        )
-                    })
+                daftarTulisan && 
+                    <motion.div variants={motionKontainer} initial="takTerlihat" animate="terlihat">
+                        {daftarTulisan.map(tulisan => {
+                            return (
+                                <motion.div 
+                                    key={tulisan.idTulisan} 
+                                    variants={motionTulisan}
+                                    className="first:pb-6 last:pb-0"
+                                >
+                                    <TulisanCard
+                                        key={tulisan.idTulisan}
+                                        tulisan={tulisan}
+                                    />
+                                </motion.div>
+                            )
+                        })}
+                    </motion.div>
             }
             {/* Blablabla... */}
         </>
