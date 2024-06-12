@@ -5,7 +5,7 @@ import KategoriCard from "./KategoriCard";
 const TulisanCard = ({ tulisan }: { tulisan: ResponDaftarTulisanDiterbitkan }) => {
     return (
         <>
-            <div className="flex flex-col p-2 gap-1 first:pt-0 last:pb-0">
+            <div className="flex flex-col py-0 px-6 lg:px-1 gap-1">
                 <div>
                     <a 
                         className="cursor-pointer text-2xl font-sans font-semibold subpixel-antialiased text-emerald-400 hover:text-emerald-300" 
@@ -21,32 +21,10 @@ const TulisanCard = ({ tulisan }: { tulisan: ResponDaftarTulisanDiterbitkan }) =
                         <KategoriCard key={indeks} kategori={itemKategori} />
                     ))}
                 </div>
-                {/* <div className="xl:text-base text-xs">
-                    {data.konten ? (
-                        <Markdown
-                            options={{
-                                wrapper: 'article',
-                                forceWrapper: true,
-                                overrides: {
-                                    TestChart,
-                                    KonversiLatex
-                                }
-                            }}
-                        >
-                            {data.konten}
-                        </Markdown>
-                    ): null}
-                </div> */}
-                <div className="flex flex-col xl:text-base text-sm break-words hyphens-auto line-clamp-6 text-justify">
-                    {/* <Markdown 
-                        remarkPlugins={[remarkGfm, remarkMath, remarkRehype]}
-                        rehypePlugins={[rehypeKatex]}
-                        className="line-clamp-6"
-                    > */}
-                    <p>
+                <div className="flex flex-col xl:text-base text-sm">
+                    <article className="bg-gradient-to-b from-white via-white via-60% text-transparent bg-clip-text line-clamp-10">
                         {tulisan.konten}
-                    </p>
-                    {/* </Markdown> */}
+                    </article>
                 </div>
             </div>
         </>
