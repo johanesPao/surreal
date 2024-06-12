@@ -62,7 +62,7 @@ const DaftarTulisan = () => {
                                 <motion.div 
                                     key={tulisan.idTulisan} 
                                     variants={motionTulisan}
-                                    className="first:pb-6 last:pb-0"
+                                    className=""
                                 >
                                     <TulisanCard
                                         key={tulisan.idTulisan}
