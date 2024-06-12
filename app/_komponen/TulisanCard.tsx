@@ -1,8 +1,12 @@
 import { opsiStringDate } from "@/app/_interface-props/_format.props";
 import { ResponDaftarTulisanDiterbitkan } from "../_interface-props/_hasil.props";
 import KategoriCard from "./KategoriCard";
+// import { KomponenWrapper } from "./KomponenWrapper";
+import dynamic from "next/dynamic";
 
 const TulisanCard = ({ tulisan }: { tulisan: ResponDaftarTulisanDiterbitkan }) => {
+    const KomponenWrapper = dynamic(() => import('./KomponenWrapper').then((module) => module.KomponenWrapper))
+
     return (
         <>
             <div className="flex flex-col py-0 px-6 lg:px-1 gap-1">
@@ -23,7 +27,10 @@ const TulisanCard = ({ tulisan }: { tulisan: ResponDaftarTulisanDiterbitkan }) =
                 </div>
                 <div className="flex flex-col xl:text-base text-sm">
                     <article className="bg-gradient-to-b from-white via-white via-60% text-transparent bg-clip-text line-clamp-10">
-                        {tulisan.konten}
+                        <KomponenWrapper
+                            source={tulisan.konten}
+                        />
+                        {/* {tulisan.konten} */}
                     </article>
                 </div>
             </div>
