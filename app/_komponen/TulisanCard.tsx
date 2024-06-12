@@ -21,8 +21,8 @@ const TulisanCard = ({ tulisan }: { tulisan: ResponDaftarTulisanDiterbitkan }) =
                         <KategoriCard key={indeks} kategori={itemKategori} />
                     ))}
                 </div>
-                <div className="flex flex-col xl:text-base text-sm line-clamp-6">
-                    <article>
+                <div className="flex flex-col xl:text-base text-sm">
+                    <article className="bg-gradient-to-b from-white via-white via-60% text-transparent bg-clip-text line-clamp-10">
                         {tulisan.konten}
                     </article>
                 </div>
