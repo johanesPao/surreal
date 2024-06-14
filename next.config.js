@@ -5,9 +5,12 @@
  **/
 
 const nextConfig = {
+    pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
     experimental: {
         typedRoutes: true
     }
 }
 
-module.exports = nextConfig
+const withMDX = require('@next/mdx')()
+
+module.exports = withMDX(nextConfig)
