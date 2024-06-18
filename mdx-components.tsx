@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types"
 import JSXTest from "@/komponen/mdx/jsxtest"
 import YouTube from '@/komponen/mdx/youtube'
 import { Heading } from '@/komponen/mdx/heading'
+import { DrawChart}  from "./komponen/mdx/drawchart"
 
 export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
     return {
@@ -9,6 +10,7 @@ export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
         // komponen MDX custom
         JSXTest,
         YouTube,
+        DrawChart,
         // komponen pengganti default MDX
         h1: Heading,
         h2: (props) => <h2 className="text-3xl font-bold pb-2" {...props} />,
