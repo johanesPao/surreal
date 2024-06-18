@@ -67,8 +67,8 @@ function lineChart(svgRef: React.RefObject<SVGSVGElement>) {
     }
   ];
   const svg = d3.select(svgRef.current);
-  const width = 700;
-  const height = 400;
+  const width = 400;
+  const height = 300;
   const margin = 50;
   const duration = 250;
   // const tooltip = { width: 100, height: 100, x: 10, y: -30 };
