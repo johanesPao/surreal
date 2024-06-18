@@ -9,7 +9,7 @@ export default async function Beranda() {
   return (
     <div>
           {daftarArtikel.map((artikel) => (
-            <div key={artikel.slug}>
+            <div key={artikel.slug} className=" first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[20%]">
               <Link
                 className="text-[20px] font-bold text-pretty"
                 href={`/artikel/${artikel.slug}` as Route}
