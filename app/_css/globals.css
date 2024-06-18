@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --default-color: #fef6e4;
-  --bg-color: #193549;
+  --default-font-color: #0d3a58;
+  --bg-color: #fef6e4;
 }
 
 body {
@@ -12,5 +12,5 @@ body {
   font-family: var(--font-roboto-mono);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--default-color);
+  color: var(--default-font-color);
 }

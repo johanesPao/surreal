@@ -45,14 +45,15 @@ export default function RootLayout({
           {title}
         </title>
       </head>
-      <body>
-        <div className="h-screen w-screen">
-          <Header />
-          <main className="relative z-10 bg-cobalt-blue px-[30px] py-[20px] flex">
-            <div className="grid">
-              {children}
-            </div>
-          </main>
+      <body className="max-w-[1000px] mx-auto">
+        <div className="flex flex-col h-full w-full">
+            <Header />
+            {/* <hr className="w-full"/> */}
+            <main className="relative px-[30px] flex flex-col grow">
+              <div className="grid">
+                {children}
+              </div>
+            </main>
         </div>
       </body>
     </html>
