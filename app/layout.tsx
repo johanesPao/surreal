@@ -1,4 +1,5 @@
 import '@/app/_css/globals.css'
+import 'katex/dist/katex.min.css'
 
 import Header from '@/komponen/tsx/Header'
 import { 
