@@ -12,6 +12,12 @@
     "postinstall": "npx prisma generate && npx prisma migrate reset --force"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.16.2",
+    "@codemirror/lang-python": "^6.1.6",
+    "@codemirror/lang-rust": "^6.0.1",
+    "@codemirror/lang-sql": "^6.6.5",
+    "@codesandbox/sandpack-react": "^2.14.4",
+    "@codesandbox/sandpack-themes": "^2.0.21",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.4",
@@ -33,6 +39,10 @@
     "react-dom": "^18",
     "redis": "^4.6.14",
     "redis-om": "^0.4.3",
+    "rehype-katex": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^6.0.0",
+    "sandpack-file-explorer": "^0.0.7",
     "styled-component": "^2.8.0",
     "ts-node": "^10.9.2",
     "typewriter-effect": "^2.21.0"
