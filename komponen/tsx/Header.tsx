@@ -7,7 +7,7 @@ import { IconBurger, IconTerminal, IconTerminal2 } from "@tabler/icons-react"
 const Header = () => {
   const { scrollYProgress } = useScroll()
   return (
-    <div className="h-auto py-[20px] px-[5%] lg:px-[20%] bg-special-background w-full flex flex-col gap-1 justify-between sticky top-0 z-20">
+    <div className="h-auto py-[20px] px-[5%] lg:px-[20%] bg-cobalt-off-blue w-full flex flex-col gap-1 justify-between sticky top-0 z-10">
       <div className="flex flex-row">
         <div className="grow">
           <motion.strong 
