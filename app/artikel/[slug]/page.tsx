@@ -39,8 +39,8 @@ export default async function Page({ params }: { params: { slug: string}}) {
     const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`))
 
     return (
-        <div className="px-[5%] lg:px-[20%] bg-background h-full z-50 flex flex-col overflow-clip">
-            <div className="sticky top-0 flex flex-row py-[40px] bg-background items-center w-full gap-4 z-50">
+        <div className="h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col overflow-clip">
+            <div className="sticky px-[5%] lg:px-[20%] top-0 flex flex-row py-[40px] bg-gradient-to-b from-cobalt-off-blue via-transparent via-95% to-transparent items-center w-full gap-4 z-[100]">
                 <div className="hover:scale-125 cursor-pointer group transition-all">
                     <Link href="/">
                         <IconArrowLeft />
@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { slug: string}}) {
                     </p>
                 </div>
             </div>
-            <article className="w-full">
+            <article className="w-full z-[70] bg-cobalt-dusty-blue-950">
                 <MDXContent />
             </article>
         </div>

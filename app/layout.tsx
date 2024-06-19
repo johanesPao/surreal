@@ -1,5 +1,6 @@
 import '@/app/_css/globals.css'
 import 'katex/dist/katex.min.css'
+import 'prismjs/themes/prism-tomorrow.min.css'
 
 import Header from '@/komponen/tsx/Header'
 import { 
@@ -49,7 +50,7 @@ export default function RootLayout({
       <body className="h-screen">
         <div className="flex flex-col h-full">
             <Header />
-            <main className="relative flex flex-col grow bg-background">
+            <main className="relative flex flex-col grow bg-cobalt-dusty-blue-950">
                 {children}
             </main>
         </div>

@@ -3,8 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --default-font-color: #0d3a58;
-  --bg-color: #fef6e4;
+  --default-font-color: #fef6e4;
+  --bg-color: #1e262e;
+}
+
+@media (min-width: 1024px) {
+  .padding-konten {
+      padding-left: 20%;
+      padding-right: 20%;
+  }
+}
+
+.padding-konten {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 body {
@@ -13,4 +25,22 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: var(--default-font-color);
+}
+
+.katex-display {
+  background-color: #9effff;
+  padding: 5px 0 5px 0;
+}
+
+.katex {
+  color: #9effff;
+}
+
+.katex-display .katex {
+  color: var(--bg-color);
+}
+
+center {
+  background-color: #3d2112;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }

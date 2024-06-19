@@ -1,0 +1,135 @@
+export const metadata = {
+    judul: "The MDX Components",
+    dipublikasikan: "2024-06-19T10:29:00Z"
+}
+
+Inline `remark-math` with `rehype-katex` will show like this: $$y = mx + b$$<br/>
+<br/>
+
+While the same _math_ element in block display will look like this:
+$$
+\sum_{i=1}^{n}{f(x)} = m\cdot{x_i} + b
+$$
+<br/>
+
+An example of custom sandpack component `Spack` being called in mdx:<br/>
+<br/>
+<Spack namaFile="/App.tsx" template="react-ts" denganPreview>
+{`const App = () => {
+    // ganti kalimat pada baris di bawah ini
+    return <span>Halo cintakuuuuu!</span>
+}
+      
+export default App`}
+</Spack>
+<br/>
+
+This one is an example of a `remark-prism` plugin of `remark` being parsed by 
+`react-syntax-highlighter` and wrapped in custom component `SyntaxHighlight` being called in
+mdx:
+<br/>
+<SyntaxHighlight bahasa="typescript" kode={`const App = () => {
+    return <span>Hello!</span>
+}
+
+export default App
+`}/>
+<br/>
+And last but not least, a `d3js` component drawing chart (line chart in example below) in
+_svg_ being called in mdx:
+<br/>
+<center><DrawChart /></center><br/>
+<br/>
+And finally, to conclude this post, as usual, we will populate this post with _lorem ipsum_
+to simulate the view on various height in vertical viewport:<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
+consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
+vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
+porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
+gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
+auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
+efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
+Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
+ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
+<br/>
