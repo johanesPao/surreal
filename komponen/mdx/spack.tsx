@@ -32,53 +32,67 @@ const Spack = ({
 }: SandpackProps) => {
     const { children, namaFile, template } = props
     return (
-        <SandpackProvider 
-            template={template} 
-            theme={gruvboxDark}
-            files={{
-                [namaFile]: {
-                    code: children,
-                    active: true
-                }
-            }}
-        >
-            <SandpackLayout>
-                {denganExplorer && (
-                    <div className="hidden lg:block">
-                        <SandpackFileExplorer />
-                    </div>)
-                }
-                <SandpackCodeEditor
-                    showTabs
-                    showLineNumbers
-                    showInlineErrors
-                    wrapContent
-                    closableTabs
-                    extensions={[autocompletion()]}
-                    extensionsKeymap={[...completionKeymap]}
-                    additionalLanguages={[
-                        {
-                            name: "python",
-                            extensions: ["py"],
-                            language: python()
-                        },
-                        {
-                            name: "rust",
-                            extensions: ["rs"],
-                            language: rust()
-                        },
-                        {
-                            name: "sql",
-                            extensions: ["sql"],
-                            language: sql()
-                        },
-                    ]}
-                    className="shadow-xl"
-                />
-                {denganPreview && <SandpackPreview />}
-                {denganConsole && <SandpackConsole />}
-            </SandpackLayout>
-        </SandpackProvider>
+        <div className="w-full">
+            <SandpackProvider 
+                template={template} 
+                theme={gruvboxDark}
+                files={{
+                    [namaFile]: {
+                        code: children,
+                        active: true
+                    }
+                }}
+                style={{
+                    width: "100%"
+                }}
+            >
+                <SandpackLayout className="shadow-xl">
+                    {denganExplorer && (
+                        <div className="hidden lg:block">
+                            <SandpackFileExplorer />
+                        </div>)
+                    }
+                    <div className="bg-[#282828] px-[5%] lg:px-[20%] grow">
+                        <SandpackCodeEditor
+                            showTabs
+                            showLineNumbers
+                            showInlineErrors
+                            wrapContent
+                            closableTabs
+                            extensions={[autocompletion()]}
+                            extensionsKeymap={[...completionKeymap]}
+                            additionalLanguages={[
+                                {
+                                    name: "python",
+                                    extensions: ["py"],
+                                    language: python()
+                                },
+                                {
+                                    name: "rust",
+                                    extensions: ["rs"],
+                                    language: rust()
+                                },
+                                {
+                                    name: "sql",
+                                    extensions: ["sql"],
+                                    language: sql()
+                                },
+                            ]}
+                            />
+                        {denganPreview && 
+                            <SandpackPreview 
+                                // style={{
+                                //     borderRadius: "0.5rem",
+                                //     overflow: "hidden"
+                                // }}
+                                className="mb-4 rounded-xl overflow-hidden"
+                            />
+                        }
+                    </div>
+                    {denganConsole && <SandpackConsole />}
+                </SandpackLayout>
+            </SandpackProvider>
+        </div>
     )
 }
 

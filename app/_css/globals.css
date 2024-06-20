@@ -28,19 +28,20 @@ body {
 }
 
 .katex-display {
-  background-color: #9effff;
-  padding: 5px 0 5px 0;
+  background-color: #282828;
+  padding: 15px 0 15px 0;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 .katex {
-  color: #9effff;
+  color: #d7865c;
 }
 
 .katex-display .katex {
-  color: var(--bg-color);
+  color: #d7865c;
 }
 
 center {
-  background-color: #3d2112;
+  background-color: #282828;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
