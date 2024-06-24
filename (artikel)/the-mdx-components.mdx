@@ -39,97 +39,44 @@ And last but not least, a `d3js` component drawing chart (line chart in example 
 _svg_ being called in mdx:
 <br/>
 <center><DrawChart /></center><br/>
+An example of _Entity Relationship Diagram_ using MermaidJS in document.<br/>
 <br/>
-And finally, to conclude this post, as usual, we will populate this post with _lorem ipsum_
-to simulate the view on various height in vertical viewport:<br/>
+<Mermaid chart={`
+erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber PK
+        string make
+        string model
+        string[] parts
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string driversLicense PK "The license #"
+        string(99) firstName "Only 99 characters are allowed"
+        string lastName
+        string phone UK
+        int age
+    }
+    NAMED-DRIVER {
+        string carRegistrationNumber PK, FK
+        string driverLicence PK, FK
+    }
+    MANUFACTURER only one to zero or more CAR : makes
+`}/><br/>
+And below is an example of table using AgGrid inside mdx component<br/>
 <br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum dignissim leo, at 
-consequat dui. Ut pulvinar quis justo feugiat hendrerit. Integer sed scelerisque metus. Donec 
-vestibulum mauris nec mauris vehicula, facilisis mattis lacus mollis. Mauris at euismod ligula, 
-porttitor maximus ligula. Etiam dui orci, semper vel libero ut, porta mattis mi. Quisque nisl eros, 
-gravida vel sagittis eu, mollis id augue. Quisque luctus, metus non aliquam elementum, leo ligula 
-auctor ipsum, ac ullamcorper ante odio et mi. Donec hendrerit augue elit, varius consectetur nisi 
-efficitur non. Donec nec imperdiet tellus. Quisque facilisis vulputate sem nec pulvinar. 
-Aliquam tincidunt velit justo, ut congue dui porttitor et. Curabitur semper libero semper metus 
-ultrices, dapibus dapibus orci molestie. Nulla sit amet erat quis mauris tincidunt scelerisque.<br/>
-<br/>
+export const data = [
+    {make: "Tesla", model: "Model Y", price: 64950, electric: true},
+    {make: "Ford", model: "F-Series", price: 33850, electric: false},
+    {make: "Toyota", model: "Corolla", price: 29600, electric: false}
+]
+
+export const kolom = [
+    {field: "make", flex: 1},
+    {field: "model"},
+    {field: "price"},
+    {field: "electric"}
+]
+
+<Grid barisData={data} definisiKolom={kolom}/><br/>

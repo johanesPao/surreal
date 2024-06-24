@@ -5,6 +5,8 @@ import { Heading } from '@/komponen/mdx/heading'
 import { DrawChart}  from "./komponen/mdx/drawchart"
 import Spack from "./komponen/mdx/spack"
 import SyntaxHighlight from "./komponen/mdx/syntaxhighlight"
+import Mermaid from './komponen/mdx/mermaid'
+import Grid from './komponen/mdx/grid'
 
 export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
     return {
@@ -15,6 +17,8 @@ export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
         DrawChart,
         Spack,
         SyntaxHighlight,
+        Mermaid,
+        Grid,
         // komponen pengganti default MDX
         h1: Heading,
         h2: (props) => <h2 className="text-3xl font-bold pb-2" {...props} />,
