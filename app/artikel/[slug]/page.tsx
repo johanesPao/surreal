@@ -6,6 +6,7 @@ import Link from "next/link"
 import { opsiStringDate } from "@/app/_interface-props/_format.props"
 import { getArtikel } from "@/app/_lib/_artikel/artikel"
 import { IconArrowLeft } from "@tabler/icons-react"
+import { KategoriMap, TNamaKategori } from "@/app/_types/kategori"
 
 type Props = {
     params: { slug: string }
@@ -33,6 +34,7 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string}}) {
     const { slug } = params
+    const mapKategori = KategoriMap
 
     const artikel = await getArtikel(params)
     // import file MDX secara dinamis berdasar slug
@@ -51,8 +53,23 @@ export default async function Page({ params }: { params: { slug: string}}) {
                         {artikel.metadata.judul}
                     </h1>
                     <p>
-                        {new Date(artikel.metadata.dipublikasikan).toLocaleDateString("en-ID", opsiStringDate)}
+                        {new Date(artikel.metadata.dibuat).toLocaleDateString("en-ID", opsiStringDate)}
                     </p>
+                    <div className="flex flex-row gap-2 italic">
+                        {artikel.metadata.kategori.map((kategori: TNamaKategori) => {
+                            const itemKategori = mapKategori.find(item => item.nama === kategori)
+                            return (
+                                <div>
+                                    {itemKategori && (
+                                        <div className="flex flex-row gap-1">
+                                            {itemKategori.ikon}
+                                            {itemKategori.nama}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
             <article className="w-full z-[70] bg-cobalt-dusty-blue-950">
