@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: { slug: string}}) {
                         {artikel.metadata.kategori.map((kategori: TNamaKategori) => {
                             const itemKategori = mapKategori.find(item => item.nama === kategori)
                             return (
-                                <div>
+                                <div key={kategori}>
                                     {itemKategori && (
                                         <div className="flex flex-row gap-1">
                                             {itemKategori.ikon}
