@@ -25,7 +25,7 @@ export default async function Beranda() {
                 {artikel.metadata.kategori.map(kategori => {
                   const itemKategori = mapKategori.find(item => item.nama === kategori)
                   return (
-                    <div className="my-0.5">
+                    <div className="my-0.5" key={kategori}>
                       {
                         itemKategori && (
                           <div className="flex flex-row gap-1 items-center">
