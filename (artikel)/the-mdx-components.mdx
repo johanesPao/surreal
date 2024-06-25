@@ -1,34 +1,39 @@
 export const metadata = {
-    judul: "The MDX Components",
-    dibuat: "2024-06-19T10:29:00Z",
-    dipublikasikan: true,
-    kategori: ["mdx", "nextjs"]
-}
+  judul: "The MDX Components",
+  dibuat: "2024-06-19T10:29:00Z",
+  dipublikasikan: true,
+  kategori: ["mdx", "nextjs"],
+};
 
 Inline `remark-math` with `rehype-katex` will show like this: $$y = mx + b$$<br/>
-<br/>
+
+<br />
 
 While the same _math_ element in block display will look like this:
+
 $$
 \sum_{i=1}^{n}{f(x)} = m\cdot{x_i} + b
 $$
-<br/>
+
+<br />
 
 An example of custom sandpack component `Spack` being called in mdx:<br/>
-<br/>
-<Spack namaFile="/App.tsx" template="react-ts" denganPreview>
-{`const App = () => {
+
+<br />
+<Spack namaFile='/App.tsx' template='react-ts' denganPreview>
+  {`const App = () => {
     // ganti kalimat pada baris di bawah ini
     return <span>Halo cintakuuuuu!</span>
 }
       
 export default App`}
 </Spack>
-<br/>
+<br />
 
-This one is an example of a `remark-prism` plugin of `remark` being parsed by 
+This one is an example of a `remark-prism` plugin of `remark` being parsed by
 `react-syntax-highlighter` and wrapped in custom component `SyntaxHighlight` being called in
 mdx:
+
 <br/>
 <SyntaxHighlight bahasa="typescript" kode={`const App = () => {
     return <span>Hello!</span>
@@ -81,4 +86,5 @@ export const kolom = [
     {field: "electric"}
 ]
 
-<Grid barisData={data} definisiKolom={kolom}/><br/>
+<Grid barisData={data} definisiKolom={kolom} />
+<br />
