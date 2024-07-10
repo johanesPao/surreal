@@ -41,8 +41,8 @@ with Excel, its ups and downs, and those moments of "Huh? How come it turns to t
 
 On this ocassion though, I want to talk about arrays. In excel. Yes, arrays has actually
 been in excel for a long time. Remember those days when you could create an array with `Shift+Ctrl+Enter`
-on a formula in a cell, and Excel would wrap your formula in curly braces like this: <ExcelLine>{`={SUMIFS(A:A) & " pieces"}`}</ExcelLine>
-? That's an array.
+on a formula in a cell, and Excel would wrap your formula in curly braces like this <ExcelLine>{`={SUMIFS(A:A) & " pieces"}`}</ExcelLine>
+That's an array.
 
 <br />
 Now what is an array? An array in a one-line definition is a variable that contains
@@ -57,3 +57,9 @@ write **12** in cell **A1**, its like saying:
 <br />
 <SyntaxHighlight bahasa='typescript' kode={`let A1 = 12`} />
 <br />
+Or better yet, use **Formulas > Name Manager > New...** and fills the **Name** with
+_numOfSheeps_ and **Refers to** _'Sheet1'!\$A$1_, this will enables you to write <ExcelLine>{`=numOfSheeps`}</ExcelLine>
+in any cells, and it will gives you the value of **A1** which is **12**, just like
+we did in _typescript_.
+<br />
+_More to come..._
