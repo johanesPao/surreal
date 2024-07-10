@@ -8,8 +8,7 @@
     "postmigrate": "npx @snaplet/seed sync",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npx prisma generate && npx prisma migrate reset --force"
+    "lint": "next lint"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.16.2",
