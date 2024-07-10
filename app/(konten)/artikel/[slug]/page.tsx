@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`));
 
   return (
-    <div className='h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col overflow-clip'>
+    <div className='h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col pb-20'>
       <HeaderArtikel metadata={artikel.metadata} />
       <article className='w-full z-[70] bg-cobalt-dusty-blue-950'>
         <MDXContent />

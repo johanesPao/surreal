@@ -1,7 +1,11 @@
-import { IconBrandNextjs, IconMarkdown } from "@tabler/icons-react";
+import {
+  IconBrandNextjs,
+  IconFileTypeXls,
+  IconMarkdown,
+} from "@tabler/icons-react";
 import { ReactElement } from "react";
 
-export type TNamaKategori = "mdx" | "nextjs";
+export type TNamaKategori = "mdx" | "nextjs" | "excel";
 
 type TKategori = {
   nama: TNamaKategori;
@@ -16,5 +20,9 @@ export const KategoriMap: TKategori[] = [
   {
     nama: "nextjs",
     ikon: <IconBrandNextjs />,
+  },
+  {
+    nama: "excel",
+    ikon: <IconFileTypeXls color='#339966' />,
   },
 ];
