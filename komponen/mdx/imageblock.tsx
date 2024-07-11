@@ -13,13 +13,12 @@ export const ImageBlock = ({ url, caption = "" }: ImageProps) => {
         src={url}
       />
       {caption !== "" && (
-        <caption className='flex flex-row relative italic font-robotoMono text-slate-200 text-start opacity-40 grow'>
+        <div className='flex flex-row relative italic font-robotoMono text-slate-200 text-start opacity-40 grow'>
           <span className='absolute top-0 -left-9 text-9xl font-bizUDMincho opacity-[0.25]'>
             "
           </span>
           <span className='grow'>{caption}</span>
-          {/* {`"${caption}"`} */}
-        </caption>
+        </div>
       )}
     </div>
   );

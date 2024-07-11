@@ -46,15 +46,32 @@ In Excel, it looks like this:
   caption={"Cell with single value in A1 and array in A2"}
 />
 <br />
-Notice the _curly braces_ and some kind of _thin border_ that wraps the cells in
-range **A2:D2**? A bit different with how we define an array in programming using
-_square brackets_, in Excel, an array is define using _curly braces_ instead. As
-for the _thin border_ that can be seen in picture above? It is only showing when
-the active cell is in the range of **A2:D2**, which is the _SPILL_ area of the array
-(more about spill later on)
+Notice the _curly braces_? In programming, we're using _square brackets_ to define
+an array, in Excel though, an array is define using _curly braces_ instead.
+<br />
+How about those _thin border_ that wraps the cells in range **A2:D2**? Those are
+what we called as array spill area in Excel. Since an array contains multiple values,
+while a cell in Excel can only store exactly only one value, if the output of your
+formula is an array, it will spill to adjacent cells.
+<br />
+By default an array such as <ExcelLine>{`={"Spoon","Fork","Oven","Knife"}`}</ExcelLine>
+will spill from left to right (ltr) or on a row based. You can change this default
+behavior to spill top to bottom or on a column based by using _TRANSPOSE_ such as
+<ExcelLine>{`=TRANSPOSE({"Spoon","Fork","Oven","Knife"})`}</ExcelLine>.
+<br />
+Also notice that you write the formula only in one cell, which is **A2**, but if
+you activate cell **B2**, **C2** or **D2**, you can see that the formula is
+still visible in _Formula Bar_ and the formula looks kinda greyed out, and you
+can only edit the formula when the active cell is in **A2**. Moreover, if you
+write or output something in **B2**, **C2** or **D2**, say we write "Hello!" in
+**C2**, then you will get _#SPILL!_ error in **A2**, this is because **C2** has
+a value and prevent the array in **A2** to spill its output.
 
 ## Do We Need Array?
 
 That would depends on the case you're working on. If you are being demanded to
-work on something fast, aestethics and reusability won't be your priority, so you can
-sketch away with Excel and get everything done.
+work on something fast while aestethics and reusability won't be your priority, you can
+go ahead and sketch your way with Excel to get everything done.
+
+<br />
+_I will wrote more later on..., stay tuned!_
