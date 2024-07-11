@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <article className='w-full z-[70] bg-cobalt-dusty-blue-950'>
         <MDXContent />
       </article>
-      <footer className='flex w-full font-wotfard font-bold text-slate-500 justify-center pt-10 pb-4'>
+      <footer className='flex w-full font-wotfard text-slate-500 font-thin justify-center pt-10 pb-4 opacity-70'>
         Johanes Pao 🐠 {new Date().getFullYear()}
       </footer>
     </div>

@@ -9,7 +9,7 @@ type ExcelLineProps = {
 const ExcelLine = ({ children }: ExcelLineProps) => {
   return (
     <motion.span
-      className='relative inline-block before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#339966] before:opacity-50 before:rounded-s -z-10'
+      className='relative inline-block before:block before:absolute before:-inset-1 before:-skew-y-1 before:bg-[#339966] before:opacity-50 before:rounded-s -z-10'
       whileInView={{
         opacity: [0, 1],
         transition: {
@@ -19,7 +19,7 @@ const ExcelLine = ({ children }: ExcelLineProps) => {
         },
       }}
     >
-      <span className='relative font-inconsolata'>{children}</span>
+      <span className='relative font-inconsolata font-bold'>{children}</span>
     </motion.span>
   );
 };
