@@ -1,14 +1,26 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 type ExcelLineProps = {
   children: string;
 };
 
 const ExcelLine = ({ children }: ExcelLineProps) => {
   return (
-    <span className='relative inline-block before:block before:absolute before:-inset-1 before:-skew-y-1 before:bg-[#339966] before:opacity-70 before:rounded-s -z-5'>
-      <span className='relative text-slate-200 font-inconsolata text-sm italic'>
-        {children}
-      </span>
-    </span>
+    <motion.span
+      className='relative inline-block before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#339966] before:opacity-50 before:rounded-s -z-10'
+      whileInView={{
+        opacity: [0, 1],
+        transition: {
+          duration: 2,
+          type: "spring",
+          ease: "easeInOut",
+        },
+      }}
+    >
+      <span className='relative font-inconsolata'>{children}</span>
+    </motion.span>
   );
 };
 

@@ -1,0 +1,60 @@
+export const metadata = {
+  judul: "Arrays Formula in Excel",
+  dibuat: "2024-07-10T05:00:04Z",
+  dipublikasikan: true,
+  kategori: ["excel"],
+};
+
+Before we dwelve into arrays formulas in Excel, we need to talk about some of the
+more basic stuff, like what is an array? why would we need it in excel? is array a
+new features in excel? does it important to learn about it? and how does it work?
+
+## What is an Array?
+
+First, we need to talk about what most people in the world of programming addressed
+as _variable_, it's a bit off-track, but I'll try my best to keep it short. A variable
+is like a box with a label on it. You can store something inside of the box and label
+the box. And whenever you need to retrieve something, you can go find the box with the
+right label on it.<br/>
+Now, a box may contain one thing like a wedding ring or it could contain many things
+like a box with "Kitchen Stuffs" label on it. When a box, contains more than one thing,
+we can consider it as an array. To give a glimpse of what a variable with single value
+looks like and what a variable array looks like, in _javascript_ it looks like this:
+
+<br />
+<SyntaxHighlight
+  bahasa='javascript'
+  kode={`const weddingRingBox = "wedding ring";
+const kitchenStuffsBox = ["Spoon", "Fork", "Oven", "Knife"];`}
+/>
+<br />
+In excel, assuming we store the value of variable `weddingRingBox` in **A1** and
+`kitchenStuffsBox` in **A2**, this can be represented as follows:
+<br />
+<SyntaxHighlight
+  bahasa='xlsx'
+  kode={`="wedding ring"
+={"Spoon","Fork","Oven","Knife"}`}
+/>
+<br />
+In Excel, it looks like this:
+<br />
+<ImageBlock
+  url={
+    "https://files.johanespao.dev/file/surreal-assets/artikel/arrays-formula-in-excel/2024-07-11+13+07+03.png"
+  }
+  caption={"Cell with single value in A1 and array in A2"}
+/>
+<br />
+Notice the _curly braces_ and some kind of _thin border_ that wraps the cells in
+range **A2:D2**? A bit different with how we define an array in programming using
+_square brackets_, in Excel, an array is define using _curly braces_ instead. As
+for the _thin border_ that can be seen in picture above? It is only showing when
+the active cell is in the range of **A2:D2**, which is the _SPILL_ area of the array
+(more about spill later on)
+
+## Do We Need Array?
+
+That would depends on the case you're working on. If you are being demanded to
+work on something fast, aestethics and reusability won't be your priority, so you can
+sketch away with Excel and get everything done.

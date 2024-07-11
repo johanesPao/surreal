@@ -9,6 +9,7 @@ import {
   robotoMono,
   inconsolata,
   wotfard,
+  bizUDMincho,
 } from "@/app/_fonts/fonts";
 
 export default function ArtikelLayout({
@@ -24,6 +25,7 @@ export default function ArtikelLayout({
         ${robotoMono.variable} 
         ${inconsolata.variable}
         ${wotfard.variable}
+        ${bizUDMincho.variable}
       `}
     >
       <head></head>
