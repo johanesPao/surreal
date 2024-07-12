@@ -1,0 +1,65 @@
+export const metadata = {
+  judul: "Arrays in Excel (...365)",
+  dibuat: "2024-07-10T05:00:04Z",
+  dipublikasikan: false,
+  kategori: ["excel"],
+};
+
+### The Journey
+
+If I were to reminisce back to the days when I first introduced to Excel, or even its predecessor,
+Lotus123, it must've been way back around 1995. My first experience with excel began
+in 2009 when I started working as a Junior Financial Analyst at a Consulting Firm. Working in a consulting firm
+with clients from various industries, be it telecommunication, logistics, palm oil,
+etc, required me to be open minded and put my feet on their shoes in order for me to understand
+their unique business process, their _SWOT_, the competition within their industries, rivals and foes,
+as well as industry specific regulations.
+
+<br />
+Most of the time, we were conducting _Feasibility Study_ for clients. However, being
+the _new kid_ in the company, given that _analysis_ is their main course. Most of
+the _financial modelling_ has been designed in excel even before I joined the company.
+So there wasn't much room for improvisation, but I couldn't resist the chance to
+break down the Excel files and understand how things worked logically.
+<br />
+In 2013, I finally had the opportunity to pioneer multiple Excel models for a financing
+company that is part of PT Japfa Comfeed Tbk. I joined the company as a _Financial
+Analyst and Accounting Supervisor_, working directly under the CFO and being responsible
+for creating _financial modelling_ for business scenarios or significant capital
+expenditure, such as building a _corn dryer plant_. But that's not all, as an Accounting
+Supervisor, I was also responsible for consolidating Quarterly and Yearly Financial
+Reports for five subsidiaries and ensuring timely reporting to regulation institution
+such as OJK and international investors (usually a _joint venture_ companies).
+<br />
+See, I have a bad habit to get overly focused on my train of thought and go off track
+when telling stories, as you can see from the paragraphs above. Enough about me,
+back to the topic. What I'm trying to convey is, that I've had my fair share of experience
+with Excel, its ups and downs, and those moments of "Huh? How come it turns to these?".
+<br />
+
+### Arrays, Keeping Things in Line!
+
+On this ocassion though, I want to talk about arrays. In Excel. Yes, arrays has actually
+been in excel for a long time. Remember those days when you could create an array with `Shift+Ctrl+Enter`
+on a formula in a cell, and Excel would wrap your formula in curly braces like this <ExcelLine>{`={SUMIFS(A:A) & " pieces"}`}</ExcelLine>
+That's an array.
+
+<br />
+Now what is an array? An array in a one-line definition is a variable that contains
+multiple values inside of it. So, in the lingo of tech and data side, you can imagine
+creating a variable called _numOfSheeps_ that holds an integer value, say 12. In
+programming language, say _typescript_ this is written as:
+<br />
+<SyntaxHighlight bahasa='typescript' kode={`let numOfSheeps = 12`} />
+<br />
+In Excel universe, each cell in a sheet can be viewed as a variable. So when you
+write **12** in cell **A1**, its like saying:
+<br />
+<SyntaxHighlight bahasa='typescript' kode={`let A1 = 12`} />
+<br />
+Or better yet, use **Formulas > Name Manager > New...** and fills the **Name** with
+_numOfSheeps_ and **Refers to** _'Sheet1'!\$A$1_, this will enables you to write <ExcelLine>{`=numOfSheeps`}</ExcelLine>
+in any cells, and it will gives you the value of **A1** which is **12**, just like
+we did in _typescript_.
+<br />
+_More to come..._

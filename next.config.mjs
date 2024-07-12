@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: "**.johanespao.dev",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "**.backblazeb2.com",
+        port: "",
+      },
     ],
   },
 };

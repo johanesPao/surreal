@@ -1,65 +1,122 @@
 export const metadata = {
-  judul: "Arrays in Excel (...365)",
+  judul: "Arrays in Excel",
   dibuat: "2024-07-10T05:00:04Z",
-  dipublikasikan: false,
+  dipublikasikan: true,
   kategori: ["excel"],
 };
 
-### The Journey
+Before we dwelve into arrays formulas in Excel, we need to talk about some of the
+more basic stuff, like what is an array? why would we need it in excel? is array a
+new features in excel? does it important to learn about it? and how does it work?
 
-If I were to reminisce back to the days when I first introduced to Excel, or even its predecessor,
-Lotus123, it must've been way back around 1995. My first experience with excel began
-in 2009 when I started working as a Junior Financial Analyst at a Consulting Firm. Working in a consulting firm
-with clients from various industries, be it telecommunication, logistics, palm oil,
-etc, required me to be open minded and put my feet on their shoes in order for me to understand
-their unique business process, their _SWOT_, the competition within their industries, rivals and foes,
-as well as industry specific regulations.
+## What is an Array?
 
-<br />
-Most of the time, we were conducting _Feasibility Study_ for clients. However, being
-the _new kid_ in the company, given that _analysis_ is their main course. Most of
-the _financial modelling_ has been designed in excel even before I joined the company.
-So there wasn't much room for improvisation, but I couldn't resist the chance to
-break down the Excel files and understand how things worked logically.
-<br />
-In 2013, I finally had the opportunity to pioneer multiple Excel models for a financing
-company that is part of PT Japfa Comfeed Tbk. I joined the company as a _Financial
-Analyst and Accounting Supervisor_, working directly under the CFO and being responsible
-for creating _financial modelling_ for business scenarios or significant capital
-expenditure, such as building a _corn dryer plant_. But that's not all, as an Accounting
-Supervisor, I was also responsible for consolidating Quarterly and Yearly Financial
-Reports for five subsidiaries and ensuring timely reporting to regulation institution
-such as OJK and international investors (usually a _joint venture_ companies).
-<br />
-See, I have a bad habit to get overly focused on my train of thought and go off track
-when telling stories, as you can see from the paragraphs above. Enough about me,
-back to the topic. What I'm trying to convey is, that I've had my fair share of experience
-with Excel, its ups and downs, and those moments of "Huh? How come it turns to these?".
-<br />
-
-### Arrays, Keeping Things in Line!
-
-On this ocassion though, I want to talk about arrays. In Excel. Yes, arrays has actually
-been in excel for a long time. Remember those days when you could create an array with `Shift+Ctrl+Enter`
-on a formula in a cell, and Excel would wrap your formula in curly braces like this <ExcelLine>{`={SUMIFS(A:A) & " pieces"}`}</ExcelLine>
-That's an array.
+First, we need to talk about what most people in the world of programming addressed
+as _variable_, it's a bit off-track, but I'll try my best to keep it short. A variable
+is like a box with a label on it. You can store something inside of the box and label
+the box. And whenever you need to retrieve something, you can go find the box with the
+right label on it.<br/>
+Now, a box may contain one thing like a wedding ring or it could contain many things
+like a box with "Kitchen Stuffs" label on it. When a box, contains more than one thing,
+we can consider it as an array. To give a glimpse of what a variable with single value
+looks like and what a variable array looks like, in _javascript_ it looks like this:
 
 <br />
-Now what is an array? An array in a one-line definition is a variable that contains
-multiple values inside of it. So, in the lingo of tech and data side, you can imagine
-creating a variable called _numOfSheeps_ that holds an integer value, say 12. In
-programming language, say _typescript_ this is written as:
+<SyntaxHighlight
+  bahasa='javascript'
+  kode={`const weddingRingBox = "wedding ring";
+const kitchenStuffsBox = ["Spoon", "Fork", "Oven", "Knife"];`}
+/>
 <br />
-<SyntaxHighlight bahasa='typescript' kode={`let numOfSheeps = 12`} />
+In excel, assuming we store the value of variable `weddingRingBox` in **A1** and
+`kitchenStuffsBox` in **A2**, this can be represented as follows:
 <br />
-In Excel universe, each cell in a sheet can be viewed as a variable. So when you
-write **12** in cell **A1**, its like saying:
+<SyntaxHighlight
+  bahasa='xlsx'
+  kode={`="wedding ring"
+={"Spoon","Fork","Oven","Knife"}`}
+/>
 <br />
-<SyntaxHighlight bahasa='typescript' kode={`let A1 = 12`} />
+In Excel, it looks like this:
 <br />
-Or better yet, use **Formulas > Name Manager > New...** and fills the **Name** with
-_numOfSheeps_ and **Refers to** _'Sheet1'!\$A$1_, this will enables you to write <ExcelLine>{`=numOfSheeps`}</ExcelLine>
-in any cells, and it will gives you the value of **A1** which is **12**, just like
-we did in _typescript_.
+<ImageBlock
+  url={
+    "https://f002.backblazeb2.com/file/surreal-assets/artikel/arrays-in-excel/SingleValueArrayEx.png"
+  }
+  caption={"Cell with single value in A1 and array in A2"}
+/>
 <br />
-_More to come..._
+Notice the _curly braces_? In programming, we're using _square brackets_ to define
+an array, in Excel though, an array is define using _curly braces_ instead.
+<br />
+How about those _thin border_ that wraps the cells in range **A2:D2**? Those are
+what we called as array spill area in Excel. Since an array contains multiple values,
+while a cell in Excel can only store exactly only one value, if the output of your
+formula is an array, it will spill to adjacent cells.
+<br />
+By default an array such as <ExcelLine>{`={"Spoon","Fork","Oven","Knife"}`}</ExcelLine>
+will spill from left to right (ltr) or on a row based. You can change this default
+behavior to spill top to bottom or on a column based by using _TRANSPOSE_ such as
+<ExcelLine>{`=TRANSPOSE({"Spoon","Fork","Oven","Knife"})`}</ExcelLine>.
+<br />
+Also notice that you write the formula only in one cell, which is **A2**, but if
+you activate cell **B2**, **C2** or **D2**, you can see that the formula is
+still visible in _Formula Bar_ and the formula looks kinda greyed out, and you
+can only edit the formula when the active cell is in **A2**. Moreover, if you
+write or output something in **B2**, **C2** or **D2**, say we write "Hello!" in
+**C2**, then you will get _#SPILL!_ error in **A2**, this is because **C2** has
+a value and prevent the array in **A2** to spill its output.
+<br />
+You can refer to an array in excel from other cell by referring to the top left
+first cell of the array and end it with _#_ like in the case above, you can
+write <ExcelLine>{`=A2#`}</ExcelLine>
+say in **G1** and the array will show up and spill from **G1** to **J1**.
+<br />
+
+### Array Index and Element
+
+One special characteristic of array is what we call ***index***, while the value 
+inside of an array usually called as an ***element***. Let's go back to the example 
+of array in _typescript_ previously, with a bit of interactivity to try for 
+yourself (expect an error in output when you delete the number between square brackets, 
+this is okay, just type 0, 1, 2 or 3):
+<br/>
+<Spack namaFile='/App.tsx' template='react-ts' denganPreview>
+  {`const App = () => {
+  const kitchenStuffs: string[] = ["Spoon", "Fork", "Oven", "Knife"];
+
+  return (
+    /\*
+      Try changing the number inside the square brackets,
+      say kitchenStuffs[0] to kitchenStuffs[2]
+      Note: In programming world, index start from 0, so
+      kitchenStuffs maximum index number is 3
+    \*/
+    <span>You choose: {kitchenStuffs[0]}</span> // kitchenStuffs[0] should return Spoon
+  )
+}
+
+export default App;`}
+</Spack>
+<br/>
+As can be seen above, we can refer to the ***first element*** in `kitchenStuffs` by 
+writing `kitchenStuffs[0]`, and to refer to the ***third element*** by writing 
+`kitchenStuffs[2]`. In programming, an _index_ start from 0, the same cannot be said 
+for Excel. In Excel, the _index_ start at 1.
+<br/>
+
+### Multi Universe, err Dimension Array!
+
+In programming lingo, we define the size of an array as _shape_ or _dimension_, so 
+the previous example of array in Excel is to be said of having _dimension_ of ***1x4*** 
+or ***shape(1, 4)*** (in Python lingo!)
+<br/>
+Let's not limit ourself with an array that contains only 1 row and 4 columns, like 
+what is being shown on previous Excel example. If an array could contain multiple 
+values inside of it, why not the values itself is also an array, so its an array 
+inside of another array. 
+<br/>
+**HOLD ON TIGHT!** Because we're going to venture into the world of multi dimensional array!
+
+<br />
+_I will wrote more later on..., stay tuned!_
