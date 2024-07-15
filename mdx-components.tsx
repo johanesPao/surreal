@@ -9,6 +9,7 @@ import Mermaid from "./komponen/mdx/mermaid";
 import Grid from "./komponen/mdx/grid";
 import ExcelLine from "./komponen/mdx/excelline";
 import { ImageBlock } from "./komponen/mdx/imageblock";
+import BlockQuote from "./komponen/mdx/blockquote";
 
 export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
   return {
@@ -23,6 +24,7 @@ export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
     Grid,
     ExcelLine,
     ImageBlock,
+    BlockQuote,
     // komponen pengganti default MDX
     h1: Heading,
     h2: Heading2,
