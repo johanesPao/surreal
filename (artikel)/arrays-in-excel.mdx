@@ -5,11 +5,15 @@ export const metadata = {
   kategori: ["excel"],
 };
 
-Before we dwelve into arrays formulas in Excel, we need to talk about some of the
+Before we dwelve into array formulas in Excel, we need to talk about some of the
 more basic stuff, like what is an array? why would we need it in excel? is array a
-new features in excel? does it important to learn about it? and how does it work?
+new features in excel? and how does it work?
 
-## I What is an Array?
+## Why Do I Need to Learn Array in Excel
+
+## The History of Array in Excel
+
+## What is an Array?
 
 First, we need to talk about what most people in the world of programming addressed
 as _variable_, it's a bit off-track, but I'll try my best to keep it short. A variable
@@ -20,7 +24,6 @@ Now, a box may contain one thing like a wedding ring or it could contain many th
 like a box with "Kitchen Stuffs" label on it. When a box, contains more than one thing,
 we can consider it as an array. To give a glimpse of what a variable with single value
 looks like and what a variable array looks like, in _javascript_ it looks like this:
-
 <br />
 <SyntaxHighlight
   bahasa='javascript'
@@ -73,7 +76,7 @@ write <ExcelLine>{`=A2#`}</ExcelLine>
 say in **G1** and the array will show up and spill from **G1** to **J1**.
 <br />
 
-### I.1 Array Index and Element
+### Array Index and Element
 
 One special characteristic of array is what we call ***index***, while the value 
 inside of an array usually called as an ***element***. Let's go back to the example 
@@ -105,7 +108,7 @@ writing `kitchenStuffs[0]`, and to refer to the ***third element*** by writing
 for Excel. In Excel, the _index_ start at 1.
 <br/>
 
-### I.2 Multi Universe, err Dimensionional Array!
+### Multi Universe, err Dimensionional Array!
 
 In programming lingo, we define the size of an array as _shape_ or _dimension_, so 
 the previous example of array in Excel is to be said of having _dimension_ of ***1x4*** 
@@ -174,7 +177,7 @@ third columns may represent the material it was made of, fourth column is year i
 made, and the last column may define whether the item has rust on it or not.
 <br />
 
-### I.3 Array Indexing and Slicing
+### Array Indexing and Slicing
 
 Now that you know that an array in Excel could have one dimension or two dimension 
 (theoretically, it could be infinite dimension, but Excel has limitation for that), how to
@@ -206,7 +209,7 @@ example, except for the column argument which is on this example is `0`, this me
 are only want to return the element on the array based on its row, which is `2` in the 
 formula and that's it. You can also write <ExcelLine>{`=INDEX(A1#,2,)`}</ExcelLine>, notice
 how I wrote it `,)`, this will give you the same output as `,0)`. Instead of a single value 
-like the first example above, this formula will return you an array instead, an array of 
+like the first example above, this formula will return you an array instead, an array containing 
 elements in the second row of array **A1#** that is.
 <br />
 You can also do the same to return elements of array based on its column by using 
@@ -233,7 +236,11 @@ Wok, Colander`. If you really want to return the first, second and third rows wi
 `TRANSPOSE()` you should write it as, <ExcelLine>{`=INDEX(A1#,{1;2;3},{2,4,5})`}</ExcelLine>
 instead. Notice the `;` separator, remember what this separator present in array? Yes, rows.
 <br />
-If it still feels hard to grasp this concept, feel free to take another round of reading, 
-and what important is, to try it yourself, experiment out.
+If it still feels hard to grasp this concept, don't worry, it took some trial and error too 
+for me for the first time. Feel free to come back to this section and read it slowly, and 
+what is more important, is to try it yourself, experiment out.
+<br />
+
+## How Array Really Works
 
 _I will wrote more later on..., stay tuned!_
