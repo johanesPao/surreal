@@ -18,7 +18,7 @@ const ArticleNavHeader = ({ metadata }: ArtikelNavButton) => {
 
   return (
     <motion.div
-      className='fixed top-0 left-0 w-screen z-[100] flex flex-col px-2 lg:px-4 py-1.5 bg-cobalt-off-blue justify-between items-baseline shadow-xl'
+      className='fixed top-0 left-0 w-screen z-[100] flex flex-col px-4 py-1.5 bg-cobalt-off-blue justify-between items-baseline shadow-xl'
       initial={{
         y: -40,
       }}
