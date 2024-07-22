@@ -7,13 +7,14 @@ import { opsiStringDate } from "@/app/_interface-props/_format.props";
 
 import NavLayout from "@/komponen/tsx/NavLayout";
 import { motion, AnimatePresence } from "framer-motion";
-import { opacity } from "@/app/_lib/_animation/navAnimation";
+import { FrontMatterArtikel } from "@/app/_types/frontmatter";
 
-type ArtikelNavButton = {
-  metadata: any;
-};
-
-const ArticleNavHeader = ({ metadata }: ArtikelNavButton) => {
+const ArticleNavHeader = ({
+  frontMatter,
+}: {
+  frontMatter: FrontMatterArtikel;
+}) => {
+  console.log(frontMatter);
   const [navOpen, setNavOpen] = useState(false);
 
   return (
@@ -42,10 +43,10 @@ const ArticleNavHeader = ({ metadata }: ArtikelNavButton) => {
           </Link>
         </div>
         <div className='flex gap-2 items-baseline flex-grow place-content-center'>
-          <p className='text-xl font-bold font-wotfard'>{metadata.judul}</p>
+          <p className='text-xl font-bold font-wotfard'>{frontMatter.title}</p>
           <p className='text-[12px] hidden lg:block'>
             {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
-              new Date(metadata.dibuat)
+              new Date(frontMatter.createdAt)
             )}
           </p>
         </div>

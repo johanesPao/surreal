@@ -44,7 +44,7 @@ const BlockQuote = ({ tipe = "default", judul, konten }: BlockQuoteProps) => {
   }
 
   return (
-    <div className='px-[5%] lg:px-[20%] p-5'>
+    <div className='px-[5%] lg:px-[30%] p-5'>
       <div
         className={`group relative overflow-clip rounded-md border-l-[18px] ${defaultSchema.warnaBorder} ${defaultSchema.warnaBackground} p-4`}
       >
@@ -52,8 +52,8 @@ const BlockQuote = ({ tipe = "default", judul, konten }: BlockQuoteProps) => {
           {defaultSchema.ikon}
         </span>
         <p className='font-bold text-xl pb-2'>{judul}</p>
-        {konten.split("<br />").map((paragraf) => (
-          <p>{paragraf}</p>
+        {konten.split("<br />").map((paragraf, index) => (
+          <p key={index}>{paragraf}</p>
         ))}
       </div>
     </div>

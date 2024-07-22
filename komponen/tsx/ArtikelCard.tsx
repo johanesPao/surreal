@@ -17,17 +17,17 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
   return (
     <div
       key={artikel.slug}
-      className=' first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[20%]'
+      className=' first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[30%]'
     >
       <div className='flex'>
         <Link
           className='text-[22px] font-bold text-pretty'
           href={`/artikel/${artikel.slug}` as Route}
         >
-          {artikel.metadata.judul}
+          {artikel.frontMatter.title}
         </Link>
         <div className='grow flex gap-1 justify-end'>
-          {artikel.metadata.kategori.map((kategori: TNamaKategori) => {
+          {artikel.frontMatter.categories.map((kategori) => {
             const itemKategori = kategoriMap.find(
               (item) => item.nama === kategori
             );
@@ -43,7 +43,7 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
       </div>
       <p className='text-[12px]'>
         {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
-          new Date(artikel.metadata.dibuat)
+          new Date(artikel.frontMatter.createdAt)
         )}
       </p>
     </div>
