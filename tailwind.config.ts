@@ -11,7 +11,6 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
         mono: ["var(--font-jetbrains-mono)"],
         inconsolata: ["var(--font-inconsolata)"],
         robotoMono: ["var(--font-roboto-mono)"],

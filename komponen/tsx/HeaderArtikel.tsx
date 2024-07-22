@@ -11,7 +11,7 @@ type HeaderArtikelProps = {
 
 const HeaderArtikel = ({ metadata }: HeaderArtikelProps) => {
   return (
-    <div className='px-[5%] lg:px-[20%] top-0 flex flex-row py-[40px] bg-gradient-to-b from-cobalt-off-blue via-transparent via-95% to-transparent items-center w-full gap-4'>
+    <div className='px-[5%] lg:px-[30%] top-0 flex flex-row py-[40px] bg-gradient-to-b from-cobalt-off-blue via-transparent via-95% to-transparent items-center w-full gap-4'>
       <div className='flex flex-col gap-1 grow'>
         <h1 className='text-[24px] font-black text-6xl'>{metadata.judul}</h1>
         <p>

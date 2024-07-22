@@ -1,9 +1,9 @@
-export const metadata = {
-  judul: "Arrays in Excel",
-  dibuat: "2024-07-10T05:00:04Z",
-  dipublikasikan: true,
-  kategori: ["excel"],
-};
+---
+title: "Arrays in Excel"
+createdAt: "2024-07-10T05:00:04Z"
+published: true
+categories: ["excel"]
+---
 
 Before we dwelve into array formulas in Excel, we need to talk about some of the
 more basic stuff, like what is an array? why would we need it in excel? is array a
@@ -78,10 +78,10 @@ say in **G1** and the array will show up and spill from **G1** to **J1**.
 
 ### Array Index and Element
 
-One special characteristic of array is what we call ***index***, while the value 
-inside of an array usually called as an ***element***. Let's go back to the example 
-of array in _typescript_ previously, with a bit of interactivity to try for 
-yourself (expect an error in output when you delete the number between square brackets, 
+One special characteristic of array is what we call ***index***, while the value
+inside of an array usually called as an ***element***. Let's go back to the example
+of array in _typescript_ previously, with a bit of interactivity to try for
+yourself (expect an error in output when you delete the number between square brackets,
 this is okay, just type 0, 1, 2 or 3):
 <br/>
 <Spack namaFile='/App.tsx' template='react-ts' denganPreview>
@@ -102,69 +102,69 @@ this is okay, just type 0, 1, 2 or 3):
 export default App;`}
 </Spack>
 <br/>
-As can be seen above, we can refer to the ***first element*** in `kitchenStuffs` by 
-writing `kitchenStuffs[0]`, and to refer to the ***third element*** by writing 
-`kitchenStuffs[2]`. In programming, an _index_ start from 0, the same cannot be said 
+As can be seen above, we can refer to the ***first element*** in `kitchenStuffs` by
+writing `kitchenStuffs[0]`, and to refer to the ***third element*** by writing
+`kitchenStuffs[2]`. In programming, an _index_ start from 0, the same cannot be said
 for Excel. In Excel, the _index_ start at 1.
 <br/>
 
 ### Multi Universe, err Dimensionional Array!
 
-In programming lingo, we define the size of an array as _shape_ or _dimension_, so 
-the previous example of array in Excel is to be said of having _dimension_ of ***1x4*** 
+In programming lingo, we define the size of an array as _shape_ or _dimension_, so
+the previous example of array in Excel is to be said of having _dimension_ of ***1x4***
 or ***shape(1, 4)*** (in Python lingo!)
 <br/>
-Let's not limit ourself with an array that contains only 1 row and 4 columns, like 
-what is being shown on previous Excel example. If an array could contain multiple 
-values inside of it, why not the values itself is also an array, so its an array 
-inside of another array. 
+Let's not limit ourself with an array that contains only 1 row and 4 columns, like
+what is being shown on previous Excel example. If an array could contain multiple
+values inside of it, why not the values itself is also an array, so its an array
+inside of another array.
 <br/>
-**HOLD ON TIGHT!** Because we're going to venture into the world of multi dimensional 
+**HOLD ON TIGHT!** Because we're going to venture into the world of multi dimensional
 array!
 <br/>
 In data science or mathematical terms especially in linear algebra, there are mathematical
-objets known as _scalar, vector, matrix_ and _tensor_. Think of _scalar_ (also known as 
-zero rank tensor) as an object that contains single value like Excel's cell. _Vector_ (also 
-known as first rank tensor) is an object that contains multiple values, this is equals to 
-our previous example of array in Excel with dimension 1x4. Matrix (also known as second 
-rank tensor) is an object that is composed of multiple arrays that in overall shape a 
+objets known as _scalar, vector, matrix_ and _tensor_. Think of _scalar_ (also known as
+zero rank tensor) as an object that contains single value like Excel's cell. _Vector_ (also
+known as first rank tensor) is an object that contains multiple values, this is equals to
+our previous example of array in Excel with dimension 1x4. Matrix (also known as second
+rank tensor) is an object that is composed of multiple arrays that in overall shape a
 rectangular array with dimension such as 4x5. While tensor is an object that may contains
 an infinite number of arrays and may represent three dimensional space and above (discussion
 about this shape is out of the scope of this writing, and by limitation, Excel can't simulate
 this shape either, so we will stick to matrix on next section)
 <br/>
 When you're working with Excel array formulas, you will need to be able to think in the scope
-of at least an array inside of another array, because most of our data or output will be in 
+of at least an array inside of another array, because most of our data or output will be in
 this kind of form. To extend on our last example of `kitchenStuffs` example, imagine, for
 whatever reason God knows, the things inside of the box was laid out like this
 <br/>
-<ImageBlock 
+<ImageBlock
   url={`https://f002.backblazeb2.com/file/surreal-assets/artikel/arrays-in-excel/ArrayInArray.png`}
   caption={`two dimensional array in excel`}
 />
 <br/>
 This can be achieved by writing the following formula <ExcelLine>{`={"Spoon", "Fork", "Oven", "Knife", "Sauce Pan"; "Tea", "Sugar", "Salt", "Wok", "Mixing Bowl"; "Glass", "Plate", "MSG", "Skillet", "Colander"; "Cutting Board", "Whisk", "Spatula", "Toaster", "Blender"}`}</ExcelLine>
 <br />
-<BlockQuote 
+<BlockQuote
   tipe='info'
-  judul='Excel Regional Format Setting' 
+  judul='Excel Regional Format Setting'
   konten={
-`Note that your regional format setting maybe different than the regional format being used 
-in this writing. You may need to switch \`,\` for \`;\` and vice versa on some regional 
-format. 
+`Note that your regional format setting maybe different than the regional format being used
+in this writing. You may need to switch \`,\` for \`;\` and vice versa on some regional
+format.
 <br />
 For more information, refers to your operating system Regional and Language settings.
 `}
 />
 <br />
-Notice how I separate each line of array using separator `;`? Now we have four values inside 
-of **A1**, separated by `;`, but each value out of those four values in **A1** is also an 
-array itself. In data science terms, one array or vector, usually represent 1 event out of 
-some samples. This also in line with the spirit of how data should be represented in a 
+Notice how I separate each line of array using separator `;`? Now we have four values inside
+of **A1**, separated by `;`, but each value out of those four values in **A1** is also an
+array itself. In data science terms, one array or vector, usually represent 1 event out of
+some samples. This also in line with the spirit of how data should be represented in a
 _tabular_ fashion, whether in Excel or in any kind of data processing tools or storage.
-<br /> 
+<br />
 Well, actually my last example didn't respect any principle of _tabular_ data, basically
-because I just want to show an example of dimension of array as a collection of kitchen 
+because I just want to show an example of dimension of array as a collection of kitchen
 stuffs. But most of the time, your data may look more like this
 <br />
 <ImageBlock
@@ -172,17 +172,17 @@ stuffs. But most of the time, your data may look more like this
   caption={`tabular data`}
 />
 <br />
-Where the first column represent items, the second column may represent weight in _grams_, 
+Where the first column represent items, the second column may represent weight in _grams_,
 third columns may represent the material it was made of, fourth column is year it is being
 made, and the last column may define whether the item has rust on it or not.
 <br />
 
 ### Array Indexing and Slicing
 
-Now that you know that an array in Excel could have one dimension or two dimension 
+Now that you know that an array in Excel could have one dimension or two dimension
 (theoretically, it could be infinite dimension, but Excel has limitation for that), how to
-call your array as a whole or in part to be calculated in another function or to be 
-outputted? With regards to the special characteristic of an array that has been discussed 
+call your array as a whole or in part to be calculated in another function or to be
+outputted? With regards to the special characteristic of an array that has been discussed
 in I.1, we can call an array as whole by writing <ExcelLine>{`=A1#`}</ExcelLine> (this is
 also already mentioned on the last part of part I) in any other cells, or if we want only
 some part of the array itself, we could do _slicing_ by _index_. Below are some examples
@@ -194,28 +194,28 @@ of _slicing_ on _index_
 />
 <br />
 The first example shows how to extract one element from an array by using index intersection
-such as <ExcelLine>{`=INDEX(A1#, 2, 3)`}</ExcelLine> to return the element at row 2 and 
+such as <ExcelLine>{`=INDEX(A1#, 2, 3)`}</ExcelLine> to return the element at row 2 and
 column 3. `INDEX()` takes 3 arguments, in which 2 are required and the last one is optional.
 The first argument of `INDEX()` ask for the array that you want to look up for (in our example
-above is **A1#**), the second argument ask for what number of row do you want to get from the 
-array in first argument (in our example this is `2` for second row), and the last optional 
-argument is the number of column that you want to get from the array (in our example this is 
+above is **A1#**), the second argument ask for what number of row do you want to get from the
+array in first argument (in our example this is `2` for second row), and the last optional
+argument is the number of column that you want to get from the array (in our example this is
 `3` for third column). Given these arguments in the example, `INDEX()` formula will return
 `Salt` as the element of the array that is located in second row and third column.
 <br />
-Though, `INDEX()` is not limited to returning one element only. In the second example of 
+Though, `INDEX()` is not limited to returning one element only. In the second example of
 <ExcelLine>{`=INDEX(A1#,2,0)`}</ExcelLine>, almost all the arguments are the same as previous
-example, except for the column argument which is on this example is `0`, this means that we 
-are only want to return the element on the array based on its row, which is `2` in the 
+example, except for the column argument which is on this example is `0`, this means that we
+are only want to return the element on the array based on its row, which is `2` in the
 formula and that's it. You can also write <ExcelLine>{`=INDEX(A1#,2,)`}</ExcelLine>, notice
-how I wrote it `,)`, this will give you the same output as `,0)`. Instead of a single value 
-like the first example above, this formula will return you an array instead, an array containing 
+how I wrote it `,)`, this will give you the same output as `,0)`. Instead of a single value
+like the first example above, this formula will return you an array instead, an array containing
 elements in the second row of array **A1#** that is.
 <br />
-You can also do the same to return elements of array based on its column by using 
-<ExcelLine>{`=INDEX(A1#,0,5)`}</ExcelLine>. This is exactly the same as the second example 
-above, but instead of `,2,0)` we use `,0,5)` in this third example to return the fifth 
-column of an two dimensional array disregarding its row. And yes, instead of `,0,5)` you 
+You can also do the same to return elements of array based on its column by using
+<ExcelLine>{`=INDEX(A1#,0,5)`}</ExcelLine>. This is exactly the same as the second example
+above, but instead of `,2,0)` we use `,0,5)` in this third example to return the fifth
+column of an two dimensional array disregarding its row. And yes, instead of `,0,5)` you
 can also write it as `,,5)` just like before.
 <br />
 You can also gives an array in the argument for row and column (second and third argument)
@@ -223,12 +223,12 @@ of a `INDEX()` formula as shown in the last example which look a bit complex. <E
 What this last example is trying to do is actually to return the first, second and third rows
 on the second, fourth and fifth columns of an array. Notice how it ignores the third column
 and jump from second to fourth column. You can pick the row and column that you want to return
-from an array, you can even use array to indicate the selection of rows and columns that 
+from an array, you can even use array to indicate the selection of rows and columns that
 you want to return. In the last example it is quite clear that `{2, 4, 5}` refer to second,
-fourth and fifth column as it is also returning `Fork, Knife, Sauce Pan` and then 
-`Sugar, Wok, Mixing Bowls`, it is indeed returning the second, fourth and fifth column. But 
+fourth and fifth column as it is also returning `Fork, Knife, Sauce Pan` and then
+`Sugar, Wok, Mixing Bowls`, it is indeed returning the second, fourth and fifth column. But
 how about the rows that we choose? Why would we wrapped it in another formula of `TRANSPOSE()`?
-Remember! When you wrote `{1, 2, 3}` this in turn will output an array horizontally, from left 
+Remember! When you wrote `{1, 2, 3}` this in turn will output an array horizontally, from left
 to right, what else is being presented horizontally from left to right? Yes, columns. So if
 you wrote the argument for rows in `INDEX()` as `{1, 2, 3}`, you will get unexpected result
 that will actually return the elements in coordinates `(1,2), (2,4), (3,5)` which is `Fork,
@@ -236,8 +236,8 @@ Wok, Colander`. If you really want to return the first, second and third rows wi
 `TRANSPOSE()` you should write it as, <ExcelLine>{`=INDEX(A1#,{1;2;3},{2,4,5})`}</ExcelLine>
 instead. Notice the `;` separator, remember what this separator present in array? Yes, rows.
 <br />
-If it still feels hard to grasp this concept, don't worry, it took some trial and error too 
-for me for the first time. Feel free to come back to this section and read it slowly, and 
+If it still feels hard to grasp this concept, don't worry, it took some trial and error too
+for me for the first time. Feel free to come back to this section and read it slowly, and
 what is more important, is to try it yourself, experiment out.
 <br />
 

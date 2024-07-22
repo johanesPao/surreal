@@ -3,8 +3,9 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import prism from "remark-prism";
 import createMDX from "@next/mdx";
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkFrontmatter from 'remark-frontmatter'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -42,11 +43,12 @@ const withMDX = createMDX({
           plugins: ["inline-color"],
         },
       ],
+      remarkFrontmatter
     ],
     rehypePlugins: [
       rehypeKatex,
       rehypeSlug,
-      [rehypeAutolinkHeadings, {behavior: 'wrap'}]
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
     ],
   },
 });

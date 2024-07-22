@@ -5,6 +5,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { getArtikel } from "@/app/_lib/_artikel/artikel";
 import ArtikelComment from "@/komponen/tsx/ArtikelComment";
 import ArticleNavHeader from "@/komponen/tsx/ArtikelNavHeader";
+import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
 
 type Props = {
   params: { slug: string };
@@ -14,10 +15,10 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const artikel = await getArtikel(params);
+  const { frontMatter }: ExtractedArtikelData = await getArtikel(params);
   return {
-    title: artikel.metadata.judul,
-    description: artikel.metadata.judul,
+    title: frontMatter.title,
+    description: frontMatter.title,
   };
 }
 
@@ -33,20 +34,18 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  const artikel = await getArtikel(params);
+  const dataArtikel: ExtractedArtikelData = await getArtikel(params);
+  console.log(dataArtikel);
   // import file MDX secara dinamis berdasar slug
   const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`));
 
   return (
     <div className='relative h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col'>
-      <ArticleNavHeader metadata={artikel.metadata} />
+      <ArticleNavHeader frontMatter={dataArtikel.frontMatter} />
       <article className='pt-[50px] w-full z-[70] bg-cobalt-dusty-blue-950 text-[14px] lg:text-[16px]'>
         <MDXContent />
       </article>
       <ArtikelComment />
-      <footer className='flex w-full font-wotfard text-slate-500 font-thin justify-center pt-10 pb-4 opacity-70'>
-        Johanes Pao 🐠 {new Date().getFullYear()}
-      </footer>
     </div>
   );
 }

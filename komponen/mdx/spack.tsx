@@ -52,7 +52,7 @@ const Spack = ({
               <SandpackFileExplorer />
             </div>
           )}
-          <div className='bg-[#282828] px-[5%] lg:px-[20%] grow'>
+          <div className='bg-[#282828] px-[5%] lg:px-[30%] grow'>
             <SandpackCodeEditor
               showTabs
               showLineNumbers
