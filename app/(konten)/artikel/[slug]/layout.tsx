@@ -16,6 +16,7 @@ import ArticleNavHeader from "@/komponen/tsx/ArtikelNavHeader";
 import { Suspense } from "react";
 import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
 import { TableOfContents } from "@/komponen/tsx/TableOfContents";
+import FooterArtikel from "@/komponen/tsx/FooterArtikel";
 
 type Props = {
   params: { slug: string };
@@ -56,10 +57,8 @@ export default async function ArtikelLayout({
           <ArticleNavHeader frontMatter={dataArtikel.frontMatter} />
           {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
           {children}
+          <FooterArtikel />
         </Suspense>
-        <footer className='flex w-full font-wotfard text-slate-500 font-thin justify-center pt-10 pb-4 opacity-70'>
-          Johanes Pao 🐠 {new Date().getFullYear()}
-        </footer>
       </body>
     </html>
   );

@@ -28,6 +28,7 @@ function extractTOCLink(node: Node, depth = 0): ExtractedTOC[] {
     extractedTOC.push({ id, url, value: text, depth });
   }
 
+  // recursive jika node adalah parent
   if (isParent(node)) {
     for (const child of node.children) {
       const newDepth = node.type === "listItem" ? depth + 1 : depth;
@@ -45,46 +46,26 @@ export async function getArtikelData({
 }): Promise<ExtractedArtikelData> {
   const fullPath = path.join(process.cwd(), "(artikel)", `${slug}.mdx`);
   const raw = fs.readFileSync(fullPath, "utf8");
+  // extract gray-matter artikel
   const { data, content } = matter(raw);
 
+  // initiate array untuk menampung table of contents
   let extractedTOC: ExtractedTOC[] = [];
 
+  // parse content dalam MDX
   const parsedMDX = await remark().process(content);
 
+  // parse MDX menjadi AST (Abstract Syntax Tree)
   const tree = fromMarkdown(String(parsedMDX));
 
+  // generate table of contents dari AST
   const tabelToc: Result = toc(tree);
 
+  // jika tabelToc.map tidak undefined atau null, lakukan rekursi extractTOCLink untuk membentuk format
+  // ExtractedTOC[]
   if (tabelToc.map) {
     extractedTOC = extractTOCLink(tabelToc.map);
   }
-
-  // if (tabelToc.map) {
-  //   console.log(
-  //     util.inspect(extractTOCLink(tabelToc.map), {
-  //       showHidden: false,
-  //       depth: null,
-  //       colors: true,
-  //     })
-  //   );
-  // }
-
-  // console.log(
-  //   util.inspect(
-  //     {
-  //       frontMatter: {
-  //         slug,
-  //         title: data.judul,
-  //         created: new Date(data.dibuat),
-  //         published: data.dipublikasikan,
-  //         tags: data.kategori,
-  //       },
-  //       toc: extractedTOC.length > 0 ? extractedTOC : undefined,
-  //       content,
-  //     },
-  //     { showHidden: false, depth: null, colors: true }
-  //   )
-  // );
 
   return {
     frontMatter: {

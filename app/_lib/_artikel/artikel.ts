@@ -11,14 +11,6 @@ export type Artikel = {
   frontMatter: MetadataArtikel;
 };
 
-// interface MetadataArtikel {
-//   judul: string;
-//   dibuat: string;
-//   dipublikasikan: boolean;
-//   kategori: TNamaKategori[];
-//   [key: string]: any; // Untuk properti dinamis lainnya
-// }
-
 export async function getSemuaArtikel(): Promise<Artikel[]> {
   const dir = path.join(process.cwd(), "(artikel)");
   const files = fs.readdirSync(dir);
@@ -29,21 +21,10 @@ export async function getSemuaArtikel(): Promise<Artikel[]> {
 
     const { data } = matter(fileContents);
 
-    console.log(data);
-
     if (data.published) {
       return namaFile;
     }
-    // const {
-    //   frontMatter,
-    // }: ExtractedArtikelData = require(`@/(artikel)/${namaFile}`);
-    // console.log("frontMatter:", frontMatter);
-    // if (frontMatter.published) {
-    //   return namaFile;
-    // }
   });
-
-  console.log(artikelDipublikasikan);
 
   const artikel = artikelDipublikasikan.map((namaFile) => {
     const fullPath = path.join(dir, namaFile);
@@ -55,14 +36,6 @@ export async function getSemuaArtikel(): Promise<Artikel[]> {
       slug: namaFile.replace(".mdx", ""),
       frontMatter: data as MetadataArtikel,
     };
-    // console.log(namaFile);
-    // const {
-    //   frontMatter,
-    // }: ExtractedArtikelData = require(`@/(artikel)/${namaFile}`);
-    // return {
-    //   slug: namaFile.replace(".mdx", ""),
-    //   frontMatter,
-    // };
   });
 
   // Sort tulisan berdasarkan descending order dibuat
@@ -83,16 +56,10 @@ export async function getArtikel({
   try {
     const { frontMatter, toc, content } = await getArtikelData({ slug });
 
-    // console.log("frontMatter is:", frontMatter);
-    // console.log(content);
-    // console.log(slug);
-
     const mdxPath = path.join("(artikel)", `${slug}.mdx`);
     if (!fs.existsSync(mdxPath)) {
       throw new Error(`MDX file untuk slug ${slug} tidak ditemukan`);
     }
-
-    // const { metadata } = await import(`@/(artikel)/${slug}.mdx`);
 
     return {
       frontMatter,
