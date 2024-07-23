@@ -31,11 +31,14 @@ export async function generateStaticParams() {
   return parameter;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Artikel({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
 
   const dataArtikel: ExtractedArtikelData = await getArtikel(params);
-  console.log(dataArtikel);
   // import file MDX secara dinamis berdasar slug
   const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`));
 

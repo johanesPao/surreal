@@ -14,7 +14,6 @@ const ArticleNavHeader = ({
 }: {
   frontMatter: FrontMatterArtikel;
 }) => {
-  console.log(frontMatter);
   const [navOpen, setNavOpen] = useState(false);
 
   return (
@@ -55,9 +54,6 @@ const ArticleNavHeader = ({
           onMouseDown={() => setNavOpen(!navOpen)}
         >
           {navOpen ? <IconX /> : <IconMenu />}
-          {/* <motion.div variants={opacity} animate={!navOpen ? "closed" : "open"}>
-            <IconX />
-          </motion.div> */}
         </div>
       </div>
       <AnimatePresence mode='wait'>{navOpen && <NavLayout />}</AnimatePresence>

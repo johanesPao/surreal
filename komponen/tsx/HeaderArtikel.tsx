@@ -1,9 +1,6 @@
 "use client";
 
-import { IconArrowLeft } from "@tabler/icons-react";
-import Link from "next/link";
 import { opsiStringDate } from "@/app/_interface-props/_format.props";
-import KategoriLayout from "./KategoriLayout";
 
 type HeaderArtikelProps = {
   metadata: any;
@@ -19,7 +16,6 @@ const HeaderArtikel = ({ metadata }: HeaderArtikelProps) => {
             new Date(metadata.dibuat)
           )}
         </p>
-        {/* <KategoriLayout metadata={metadata} /> */}
       </div>
     </div>
   );
