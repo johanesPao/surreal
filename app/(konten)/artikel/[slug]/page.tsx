@@ -3,8 +3,6 @@ import path from "path";
 import dynamic from "next/dynamic";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getArtikel } from "@/app/_lib/_artikel/artikel";
-import ArtikelComment from "@/komponen/tsx/ArtikelComment";
-import ArticleNavHeader from "@/komponen/tsx/ArtikelNavHeader";
 import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
 
 type Props = {
@@ -44,11 +42,9 @@ export default async function Artikel({
 
   return (
     <div className='relative h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col'>
-      <ArticleNavHeader frontMatter={dataArtikel.frontMatter} />
       <article className='pt-[50px] w-full z-[70] bg-cobalt-dusty-blue-950 text-[14px] lg:text-[16px]'>
         <MDXContent />
       </article>
-      <ArtikelComment />
     </div>
   );
 }

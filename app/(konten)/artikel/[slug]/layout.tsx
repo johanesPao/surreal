@@ -17,6 +17,8 @@ import { Suspense } from "react";
 import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
 import { TableOfContents } from "@/komponen/tsx/TableOfContents";
 import FooterArtikel from "@/komponen/tsx/FooterArtikel";
+import ArtikelAuthorCard from "@/komponen/tsx/ArtikelAuthorCard";
+import ArtikelComment from "@/komponen/tsx/ArtikelComment";
 
 type Props = {
   params: { slug: string };
@@ -57,6 +59,8 @@ export default async function ArtikelLayout({
           <ArticleNavHeader frontMatter={dataArtikel.frontMatter} />
           {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
           {children}
+          <ArtikelAuthorCard />
+          <ArtikelComment />
           <FooterArtikel />
         </Suspense>
       </body>
