@@ -67,7 +67,7 @@ export const TOCLink = ({
           if (!isDesktop && setTocOpen) {
             setTimeout(() => {
               setTocOpen(false);
-            }, 300);
+            }, 850);
           }
         }}
       >
