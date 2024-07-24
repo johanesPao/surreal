@@ -3,14 +3,20 @@
 import { useEffect, useState } from "react";
 
 import { ExtractedTOC } from "@/app/_types/extractedtoc";
+import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
 
 type fontSizeKey = { [key: string]: string };
 type TOCLinkProps = {
   node: ExtractedTOC;
   activeId: string;
+  setTocOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 };
 
-export const TOCLink = ({ node, activeId }: TOCLinkProps) => {
+export const TOCLink = ({
+  node,
+  activeId,
+  setTocOpen = undefined,
+}: TOCLinkProps) => {
   const [dimension, setDimension] = useState({
     width: 0,
     height: 0,
@@ -20,6 +26,7 @@ export const TOCLink = ({ node, activeId }: TOCLinkProps) => {
 
   const { id, url, value, depth } = node;
   const [highlighted, setHighlighted] = useState(false);
+  const [isDesktop] = useDesktopOrMobile();
 
   useEffect(() => {
     const elementActive = document.getElementById(id);
@@ -50,10 +57,18 @@ export const TOCLink = ({ node, activeId }: TOCLinkProps) => {
         } ${fontSize[depth.toString()]}`}
         onClick={(e) => {
           e.preventDefault();
+
           setHighlighted(true);
+
           document
             .getElementById(id)
             ?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+          if (!isDesktop && setTocOpen) {
+            setTimeout(() => {
+              setTocOpen(false);
+            }, 300);
+          }
         }}
       >
         {value}
