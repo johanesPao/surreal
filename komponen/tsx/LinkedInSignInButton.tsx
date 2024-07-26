@@ -26,7 +26,7 @@ export const LinkedInSignInButton = ({
       className='flex gap-2 items-center justify-center bg-[#0a66c2] w-[300px] py-1 group cursor-pointer rounded-sm shadow-md'
       onClick={() => {
         loginUsingLinkedIn.value = true;
-        signIn("twitter", { callbackUrl: redirectOrigin });
+        signIn("linkedin", { callbackUrl: redirectOrigin });
       }}
     >
       <IconBrandLinkedin size={36} />
