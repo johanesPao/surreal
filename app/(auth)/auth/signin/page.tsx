@@ -11,21 +11,18 @@ const originalRequestingUrl = signal("");
 // DON'T REDIRECT PEOPLE HERE!!
 
 const SignInPage = () => {
-  const router = useRouter();
   const search = useSearchParams();
   const error = search.get("error");
-  const originUrl = search.get("originUrl") as string;
   console.log("search params: ", error);
-  console.log("origin uri: ", originUrl);
 
   effect(() => {
     if (typeof window !== undefined) {
       // get the value of originalUrl in localStorage
-      const originalUrl = localStorage.getItem("originalUrl");
+      const urlRequestingAuth = localStorage.getItem("urlRequestingAuth");
       // set originalRequestingUrl, if originalUrl is null like
       // in the case of user navigate to this page directly from
       // external site or by typing in address bar, set to '/'
-      originalRequestingUrl.value = originalUrl ? originalUrl : "/";
+      originalRequestingUrl.value = urlRequestingAuth ? urlRequestingAuth : "/";
     }
   });
 

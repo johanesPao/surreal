@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import { IconArrowLeft, IconLogin, IconMenu, IconX } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 import { opsiStringDate } from "@/app/_interface-props/_format.props";
 
 import NavLayout from "@/komponen/tsx/NavLayout";
 import { motion, AnimatePresence } from "framer-motion";
 import { FrontMatterArtikel } from "@/app/_types/frontmatter";
 import { Session } from "next-auth";
-import { signal } from "@preact-signals/safe-react";
+import { signal, effect } from "@preact-signals/safe-react";
 import Image from "next/image";
 
 type ArticleNavHeaderProps = {
@@ -18,8 +17,18 @@ type ArticleNavHeaderProps = {
 };
 
 const navOpen = signal(false);
+const initiateSignIn = signal(false);
 
 const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
+  const router = useRouter();
+
+  effect(() => {
+    if (initiateSignIn.value) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("urlRequestingAuth", window.location.href);
+      }
+    }
+  });
   return (
     <motion.div
       className='fixed top-0 left-0 w-screen z-[100] flex flex-col px-4 py-1.5 bg-cobalt-off-blue justify-between items-baseline shadow-xl'
@@ -65,7 +74,14 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
               }
             />
           ) : (
-            <span>Sign In</span>
+            <span
+              onClick={() => {
+                initiateSignIn.value = true;
+                router.push("/auth/signin");
+              }}
+            >
+              Sign In
+            </span>
             // <IconLogin size={32} />
           )}
         </div>
