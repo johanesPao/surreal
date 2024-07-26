@@ -62,3 +62,8 @@ export enum EGithubRepoPrivacy {
   PUBLIC = "public",
   PRIVATE = "private",
 }
+
+export enum AuthError {
+  OAuthCallbackError = "OAuthCallbackError",
+  Configuration = "Configuration",
+}

@@ -13,6 +13,14 @@ const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   experimental: {
     mdxRs: false,
+    swcPlugins: [
+      [
+        "@preact-signals/safe-react/swc",
+        {
+          mode: "auto"
+        }
+      ]
+    ]
   },
   images: {
     remotePatterns: [
@@ -24,6 +32,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "**.backblazeb2.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "**.licdn.com",
         port: "",
       },
     ],

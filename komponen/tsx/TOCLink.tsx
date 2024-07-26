@@ -4,18 +4,19 @@ import { useEffect, useState } from "react";
 
 import { ExtractedTOC } from "@/app/_types/extractedtoc";
 import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
+import { Signal } from "@preact-signals/safe-react";
 
 type fontSizeKey = { [key: string]: string };
 type TOCLinkProps = {
   node: ExtractedTOC;
   activeId: string;
-  setTocOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  tocOpened?: Signal<boolean> | undefined;
 };
 
 export const TOCLink = ({
   node,
   activeId,
-  setTocOpen = undefined,
+  tocOpened = undefined,
 }: TOCLinkProps) => {
   const [dimension, setDimension] = useState({
     width: 0,
@@ -64,10 +65,10 @@ export const TOCLink = ({
             .getElementById(id)
             ?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-          if (!isDesktop && setTocOpen) {
+          if (!isDesktop && tocOpened) {
             setTimeout(() => {
-              setTocOpen(false);
-            }, 850);
+              tocOpened.value = false;
+            }, 1100);
           }
         }}
       >

@@ -19,6 +19,7 @@ import { TableOfContents } from "@/komponen/tsx/TableOfContents";
 import FooterArtikel from "@/komponen/tsx/FooterArtikel";
 import ArtikelAuthorCard from "@/komponen/tsx/ArtikelAuthorCard";
 import ArtikelComment from "@/komponen/tsx/ArtikelComment";
+import { auth } from "@/auth";
 
 type Props = {
   params: { slug: string };
@@ -29,11 +30,20 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { frontMatter }: ExtractedArtikelData = await getArtikel(params);
+  const session = await auth();
+  if (session) {
+    console.log(session.user);
+  }
+
   return {
     title: frontMatter.title,
     description: frontMatter.title,
   };
 }
+
+const getSession = async () => {
+  return await auth();
+};
 
 export default async function ArtikelLayout({
   params,
@@ -43,6 +53,8 @@ export default async function ArtikelLayout({
   children: React.ReactNode;
 }) {
   const dataArtikel: ExtractedArtikelData = await getArtikel(params);
+  const session = await getSession();
+
   return (
     <html
       className={`
@@ -56,11 +68,14 @@ export default async function ArtikelLayout({
       <head></head>
       <body className='relative'>
         <Suspense fallback={<div className='text-7xl white'>LOADING!!</div>}>
-          <ArticleNavHeader frontMatter={dataArtikel.frontMatter} />
+          <ArticleNavHeader
+            frontMatter={dataArtikel.frontMatter}
+            session={session}
+          />
           {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
           {children}
           <ArtikelAuthorCard />
-          <ArtikelComment />
+          <ArtikelComment session={session} />
           <FooterArtikel />
         </Suspense>
       </body>

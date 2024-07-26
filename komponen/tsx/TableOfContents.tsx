@@ -6,6 +6,9 @@ import { ExtractedTOC } from "@/app/_types/extractedtoc";
 import { TOCDeskComp } from "./TOCDeskComp";
 import { TOCMobileComp } from "./TOCMobileComp";
 import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
+import { signal } from "@preact-signals/safe-react";
+
+const activeId = signal("");
 
 export const TableOfContents = ({ nodes }: { nodes: ExtractedTOC[] }) => {
   if (!nodes.length) {
@@ -14,13 +17,12 @@ export const TableOfContents = ({ nodes }: { nodes: ExtractedTOC[] }) => {
 
   const [diDesktop] = useDesktopOrMobile();
   const observer = useRef<IntersectionObserver | null>(null);
-  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const handleObserver = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry?.isIntersecting) {
-          setActiveId(entry.target.id);
+          activeId.value = entry.target.id;
         }
       });
     };
@@ -43,9 +45,9 @@ export const TableOfContents = ({ nodes }: { nodes: ExtractedTOC[] }) => {
   return (
     <>
       {diDesktop ? (
-        <TOCDeskComp nodes={nodes} activeId={activeId} />
+        <TOCDeskComp nodes={nodes} activeId={activeId.value} />
       ) : (
-        <TOCMobileComp nodes={nodes} activeId={activeId} />
+        <TOCMobileComp nodes={nodes} activeId={activeId.value} />
       )}
     </>
   );
