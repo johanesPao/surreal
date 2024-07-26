@@ -42,7 +42,7 @@ export default async function Artikel({
 
   return (
     <div className='relative h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col'>
-      <article className='pt-[50px] w-full z-[70] bg-cobalt-dusty-blue-950 text-[14px] lg:text-[16px]'>
+      <article className='pt-[72px] w-full z-[70] bg-cobalt-dusty-blue-950 text-[14px] lg:text-[16px]'>
         <MDXContent />
       </article>
     </div>

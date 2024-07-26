@@ -5,17 +5,18 @@ import { height } from "@/app/_lib/_animation/tocAnimation";
 
 import { ExtractedTOC } from "@/app/_types/extractedtoc";
 import { TOCLink } from "./TOCLink";
+import { Signal } from "@preact-signals/safe-react";
 
 type TOCMobileContentProps = {
   nodes: ExtractedTOC[];
   activeId: string;
-  setTocOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  tocOpened: Signal<boolean>;
 };
 
 const TOCMobileContent = ({
   nodes,
   activeId,
-  setTocOpen,
+  tocOpened,
 }: TOCMobileContentProps) => {
   return (
     <motion.div
@@ -32,7 +33,7 @@ const TOCMobileContent = ({
               key={index}
               node={node}
               activeId={activeId}
-              setTocOpen={setTocOpen}
+              tocOpened={tocOpened}
             />
           );
         })}
