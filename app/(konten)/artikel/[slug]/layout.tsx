@@ -31,9 +31,6 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { frontMatter }: ExtractedArtikelData = await getArtikel(params);
   const session = await auth();
-  if (session) {
-    console.log(session.user);
-  }
 
   return {
     title: frontMatter.title,

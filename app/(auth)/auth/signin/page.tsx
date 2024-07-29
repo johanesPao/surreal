@@ -13,10 +13,9 @@ const originalRequestingUrl = signal("");
 const SignInPage = () => {
   const search = useSearchParams();
   const error = search.get("error");
-  console.log("search params: ", error);
 
   effect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
       // get the value of originalUrl in localStorage
       const urlRequestingAuth = localStorage.getItem("urlRequestingAuth");
       // set originalRequestingUrl, if originalUrl is null like

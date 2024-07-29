@@ -5,7 +5,6 @@ import LinkedInProvider, {
 import TwitterProvider, { TwitterProfile } from "next-auth/providers/twitter";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  // adapter: PostgresAdapter(pool),
   providers: [
     LinkedInProvider({
       clientId: process.env.AUTH_LINKEDIN_ID,
@@ -52,22 +51,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           case "twitter":
             const twitterData = profile.data as TwitterProfile;
             token.username = twitterData.username;
+            token.id = twitterData.id;
             break;
           case "linkedin":
             const linkedinData = profile as LinkedInProfile;
             token.name = linkedinData.name;
-            (token.email = linkedinData.email),
-              (token.image = linkedinData.picture);
+            token.email = linkedinData.email;
+            token.image = linkedinData.picture;
+            token.id = linkedinData.sub;
             // LinkedIn specific token info yang dibutuhkan
             break;
         }
-        // const data = profile.data as TwitterProfile;
-        // token.username = data.username; // Ensure the username is stored in the token
       }
       return token;
     },
     async session({ session, token }) {
       session.user.username = token.username as string | null; // Type assertion for TypeScript
+      session.user.id = token.id as string;
       return session;
     },
   },
