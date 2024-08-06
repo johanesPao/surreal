@@ -9,26 +9,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     LinkedInProvider({
       clientId: process.env.AUTH_LINKEDIN_ID,
       clientSecret: process.env.AUTH_LINKEDIN_SECRET,
-      profile(profile: LinkedInProfile) {
+      async profile(profile: LinkedInProfile) {
         return {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
           image: profile.picture,
+          provider: "linkedin",
         };
       },
     }),
     TwitterProvider({
       clientId: process.env.AUTH_TWITTER_ID,
       clientSecret: process.env.AUTH_TWITTER_SECRET,
-      profile(profile) {
+      async profile(profile) {
         const { data } = profile;
         return {
           id: data.id,
           name: data.name,
           email: data.email,
           image: data.profile_image_url,
-          username: data.username,
+          handleName: data.username,
+          provider: "twitter",
         };
       },
     }),
@@ -50,24 +52,36 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         switch (account.provider) {
           case "twitter":
             const twitterData = profile.data as TwitterProfile;
-            token.username = twitterData.username;
-            token.id = twitterData.id;
+            token = {
+              ...token,
+              provider: account.provider,
+              id: twitterData.id,
+              handleName: twitterData.username,
+            };
             break;
           case "linkedin":
             const linkedinData = profile as LinkedInProfile;
-            token.name = linkedinData.name;
-            token.email = linkedinData.email;
-            token.image = linkedinData.picture;
-            token.id = linkedinData.sub;
-            // LinkedIn specific token info yang dibutuhkan
+            token = {
+              ...token,
+              provider: account.provider,
+              id: linkedinData.sub,
+              name: linkedinData.name,
+              email: linkedinData.email,
+              image: linkedinData.picture,
+            };
             break;
         }
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.username = token.username as string | null; // Type assertion for TypeScript
-      session.user.id = token.id as string;
+      session.user = {
+        ...session.user,
+        provider: token.provider as string,
+        id: token.id as string,
+        handleName: token.handleName as string,
+      };
+
       return session;
     },
   },
