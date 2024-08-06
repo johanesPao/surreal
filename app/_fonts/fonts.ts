@@ -1,32 +1,25 @@
-import {
-  Inter,
-  JetBrains_Mono,
-  Roboto_Mono,
-  Inconsolata,
-  BIZ_UDMincho,
-} from "next/font/google";
 import localFont from "next/font/local";
 
-export const inter = Inter({
-  subsets: ["latin"],
+export const inter = localFont({
+  src: "./Inter-VariableFont_opsz,wght.ttf",
   display: "swap",
   variable: "--font-inter",
 });
 
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+export const jetbrainsMono = localFont({
+  src: "./JetBrainsMono-VariableFont_wght.ttf",
   display: "swap",
   variable: "--font-jetbrains-mono",
 });
 
-export const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
+export const robotoMono = localFont({
+  src: "./RobotoMono-VariableFont_wght.ttf",
   display: "swap",
   variable: "--font-roboto-mono",
 });
 
-export const inconsolata = Inconsolata({
-  subsets: ["latin"],
+export const inconsolata = localFont({
+  src: "./Inconsolata-VariableFont_wdth,wght.ttf",
   display: "swap",
   variable: "--font-inconsolata",
 });
@@ -37,9 +30,39 @@ export const wotfard = localFont({
   variable: "--font-wotfard",
 });
 
-export const bizUDMincho = BIZ_UDMincho({
-  subsets: ["latin"],
+export const bizUDMincho = localFont({
+  src: "./BIZUDMincho-Regular.ttf",
   display: "swap",
   variable: "--font-biz-ud-mincho",
   weight: "400",
+});
+
+export const monaspaceArgon = localFont({
+  src: "./MonaspaceArgonVarVF[wght,wdth,slnt].ttf",
+  display: "swap",
+  variable: "--font-monaspace-argon",
+});
+
+export const monaspaceKrypton = localFont({
+  src: "./MonaspaceKryptonVarVF[wght,wdth,slnt].ttf",
+  display: "swap",
+  variable: "--font-monaspace-krypton",
+});
+
+export const monaspaceNeon = localFont({
+  src: "./MonaspaceNeonVarVF[wght,wdth,slnt].ttf",
+  display: "swap",
+  variable: "--font-monaspace-neon",
+});
+
+export const monaspaceRadon = localFont({
+  src: "./MonaspaceRadonVarVF[wght,wdth,slnt].ttf",
+  display: "swap",
+  variable: "--font-monaspace-radon",
+});
+
+export const monaspaceXenon = localFont({
+  src: "./MonaspaceXenonVarVF[wght,wdth,slnt].ttf",
+  display: "swap",
+  variable: "--font-monaspace-xenon",
 });
