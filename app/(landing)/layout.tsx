@@ -2,10 +2,17 @@ import "@/app/_css/globals.css";
 
 import Header from "@/komponen/tsx/Header";
 import {
+  inter,
   jetbrainsMono,
   robotoMono,
   inconsolata,
   wotfard,
+  bizUDMincho,
+  monaspaceArgon,
+  monaspaceKrypton,
+  monaspaceNeon,
+  monaspaceRadon,
+  monaspaceXenon
 } from "@/app/_fonts/fonts";
 
 type Metadata = {
@@ -35,26 +42,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`
-        ${jetbrainsMono.variable}
-        ${robotoMono.variable}
-        ${inconsolata.variable}
-        ${wotfard.variable}
-      `}
-    >
-      <head>
-        <title>{title}</title>
-      </head>
-      <body className="h-screen">
-        <div className="flex flex-col h-full">
-          <Header />
-          <main className="relative flex flex-col grow bg-cobalt-dusty-blue-950">
-            {children}
-          </main>
-        </div>
-      </body>
-    </html>
+    <div className="flex flex-col h-full">
+      <Header />
+      <main className="flex flex-col grow bg-cobalt-dusty-blue-950">
+        {children}
+      </main>
+    </div>
   );
 }

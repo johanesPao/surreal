@@ -1,6 +1,12 @@
 "use client";
 
-import { IconArrowLeft, IconLogin, IconMenu, IconX } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconLogin,
+  IconMenu,
+  IconPlugConnected,
+  IconX,
+} from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { opsiStringDate } from "@/app/_interface-props/_format.props";
 
@@ -10,6 +16,7 @@ import { FrontMatterArtikel } from "@/app/_types/frontmatter";
 import { Session } from "next-auth";
 import { signal, effect } from "@preact-signals/safe-react";
 import Image from "next/image";
+import SignInWrapperComp from "./SignInWrapperComp";
 
 type ArticleNavHeaderProps = {
   frontMatter: FrontMatterArtikel;
@@ -17,6 +24,7 @@ type ArticleNavHeaderProps = {
 };
 
 const navOpen = signal(false);
+const userNavOpen = signal(false);
 const initiateSignIn = signal(false);
 
 const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
@@ -29,6 +37,7 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
       }
     }
   });
+
   return (
     <motion.div
       className='fixed top-0 left-0 w-screen z-[100] flex flex-col px-4 py-1.5 bg-cobalt-off-blue justify-between items-baseline shadow-xl'
@@ -54,8 +63,8 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
           {navOpen.value ? <IconX /> : <IconMenu />}
         </div>
         <div className='flex gap-2 items-baseline flex-grow place-content-center'>
-          <p className='text-xl font-bold font-wotfard'>{frontMatter.title}</p>
-          <p className='text-[12px] hidden lg:block'>
+          <p className='text-xl font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
+          <p className='text-[12px] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
             {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
               new Date(frontMatter.createdAt)
             )}
@@ -70,19 +79,16 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
               height={32}
               className='rounded-full'
               onMouseEnter={() =>
-                console.log(`User ${session.user.name} is logged in`)
+                console.log(`User ${session.user.id} is logged in`)
               }
             />
           ) : (
-            <span
-              onClick={() => {
-                initiateSignIn.value = true;
-                router.push("/auth/signin");
-              }}
-            >
-              Sign In
-            </span>
-            // <IconLogin size={32} />
+            <SignInWrapperComp>
+              <IconPlugConnected
+                size={24}
+                className='hover:scale-125 hover:text-green-300 duration-300'
+              />
+            </SignInWrapperComp>
           )}
         </div>
       </div>

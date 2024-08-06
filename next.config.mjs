@@ -39,6 +39,11 @@ const nextConfig = {
         hostname: "**.licdn.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "**.twimg.com",
+        port: "",
+      },
     ],
   },
 };

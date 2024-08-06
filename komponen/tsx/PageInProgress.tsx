@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function PageInProgress() {
   return (
-    <div className='w-screen h-screen flex flex-col items-center justify-center gap-10'>
+    <div className='w-screen h-screen flex flex-col items-center justify-center gap-10 font-monaspaceRadon'>
       <IconError404 size={96} color='red' />
       <p>Huh? Sorry. I haven't implement the logic for this page yet.</p>
       <div className='flex gap-6'>

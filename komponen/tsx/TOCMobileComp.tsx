@@ -27,7 +27,6 @@ export const TOCMobileComp = ({
           !tocOpened.value
             ? (tocOpened.value = true)
             : (tocOpened.value = false);
-          console.log(tocOpened.value);
         }}
       >
         {tocOpened.value ? (

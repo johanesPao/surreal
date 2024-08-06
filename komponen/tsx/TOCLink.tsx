@@ -55,7 +55,7 @@ export const TOCLink = ({
         href={url}
         className={`${
           highlighted ? "border-b-4 border-b-cobalt-off-blue-600" : ""
-        } ${fontSize[depth.toString()]}`}
+        } ${fontSize[depth.toString()]} font-monaspaceKrypton block`}
         onClick={(e) => {
           e.preventDefault();
 

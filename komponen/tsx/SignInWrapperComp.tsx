@@ -12,8 +12,8 @@ const SignInWrapperComp = ({ children }: PropsWithChildren) => {
 
   effect(() => {
     if (signInInitiated.value) {
-      if (typeof window !== undefined) {
-        localStorage.setItem("originalUrl", window.location.href);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("urlRequestingAuth", window.location.href);
       }
     }
   });
@@ -24,6 +24,7 @@ const SignInWrapperComp = ({ children }: PropsWithChildren) => {
         signInInitiated.value = true;
         router.push("/auth/signin");
       }}
+      className='cursor-pointer'
     >
       {children}
     </div>
