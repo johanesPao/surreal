@@ -17,6 +17,11 @@ const config: Config = {
         jetbrainsMono: ["var(--font-jetbrains-mono)"],
         wotfard: ["var(--font-wotfard)"],
         bizUDMincho: ["var(--font-biz-ud-mincho)"],
+        monaspaceArgon: ["var(--font-monaspace-argon)"],
+        monaspaceKrypton: ["var(--font-monaspace-krypton)"],
+        monaspaceNeon: ["var(--font-monaspace-neon)"],
+        monaspaceRadon: ["var(--font-monaspace-radon)"],
+        monaspaceXenon: ["var(--font-monaspace-xenon)"],
       },
       colors: {
         "special-background": {

@@ -4,16 +4,21 @@ import "prismjs/themes/prism-tomorrow.min.css";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import {
+  inter,
   jetbrainsMono,
   robotoMono,
   inconsolata,
   wotfard,
   bizUDMincho,
+  monaspaceArgon,
+  monaspaceKrypton,
+  monaspaceNeon,
+  monaspaceRadon,
+  monaspaceXenon
 } from "@/app/_fonts/fonts";
 import { Metadata, ResolvingMetadata } from "next";
 import { getArtikel } from "@/app/_lib/_artikel/artikel";
 import ArticleNavHeader from "@/komponen/tsx/ArtikelNavHeader";
-import { Suspense } from "react";
 import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
 import { TableOfContents } from "@/komponen/tsx/TableOfContents";
 import FooterArtikel from "@/komponen/tsx/FooterArtikel";
@@ -53,29 +58,16 @@ export default async function ArtikelLayout({
   const session = await getSession();
 
   return (
-    <html
-      className={`
-        ${jetbrainsMono.variable}
-        ${robotoMono.variable}
-        ${inconsolata.variable}
-        ${wotfard.variable}
-        ${bizUDMincho.variable}
-      `}
-    >
-      <head></head>
-      <body className='relative'>
-        <Suspense fallback={<div className='text-7xl white'>LOADING!!</div>}>
-          <ArticleNavHeader
-            frontMatter={dataArtikel.frontMatter}
-            session={session}
-          />
-          {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
-          {children}
-          <ArtikelAuthorCard />
-          <ArtikelComment session={session} />
-          <FooterArtikel />
-        </Suspense>
-      </body>
-    </html>
+    <div className="relative">
+      <ArticleNavHeader
+        frontMatter={dataArtikel.frontMatter}
+        session={session}
+      />
+      {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
+      {children}
+      <ArtikelAuthorCard />
+      <ArtikelComment session={session} />
+      <FooterArtikel />
+    </div>
   );
 }

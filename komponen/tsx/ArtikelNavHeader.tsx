@@ -63,8 +63,8 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
           {navOpen.value ? <IconX /> : <IconMenu />}
         </div>
         <div className='flex gap-2 items-baseline flex-grow place-content-center'>
-          <p className='text-xl font-bold font-wotfard'>{frontMatter.title}</p>
-          <p className='text-[12px] hidden lg:block'>
+          <p className='text-xl font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
+          <p className='text-[12px] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
             {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
               new Date(frontMatter.createdAt)
             )}

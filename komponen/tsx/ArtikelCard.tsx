@@ -17,7 +17,7 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
   return (
     <div
       key={artikel.slug}
-      className=' first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[30%]'
+      className=' first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[30%] font-monaspaceKrypton'
     >
       <div className='flex'>
         <Link
@@ -41,7 +41,7 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
           })}
         </div>
       </div>
-      <p className='text-[12px]'>
+      <p className='text-[12px] font-monaspaceArgon' suppressHydrationWarning>
         {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
           new Date(artikel.frontMatter.createdAt)
         )}

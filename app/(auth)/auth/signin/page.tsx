@@ -28,8 +28,8 @@ const SignInPage = () => {
   return (
     <div className='w-screen h-screen flex flex-col items-center justify-center'>
       <div className='container px-[5%] lg:px-[30%] flex flex-col items-center'>
-        <div className='flex flex-col w-[400px] py-10 gap-5 items-center bg-cobalt-off-blue border border-cobalt-dusty-blue shadow-2xl'>
-          <text className='font-wotfard text-4xl py-20'>Sign In</text>
+        <div className='flex flex-col w-[400px] py-10 gap-5 items-center bg-cobalt-off-blue border border-cobalt-dusty-blue shadow-2xl font-inconsolata'>
+          <text className='text-4xl py-10'>Sign In</text>
           <LinkedInSignInButton redirectOrigin={originalRequestingUrl.value} />
           <span>or</span>
           <XSignInButton redirectOrigin={originalRequestingUrl.value} />

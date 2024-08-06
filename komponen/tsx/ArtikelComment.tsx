@@ -9,18 +9,18 @@ type ArtikelCommentProps = {
 
 const ArtikelComment = ({ session }: ArtikelCommentProps) => {
   return (
-    <div className='px-[5%] lg:px-[30%] pt-5'>
+    <div className='px-[5%] lg:px-[30%] pt-5 w-full flex flex-row font-monaspaceKrypton place-content-center'>
       {!session && (
         <Link
           href={{
             pathname: "/auth/signin",
             query: { originUrl: "/artikel/arrays-in-excel" },
           }}
+          className="shadow-2xl"
         >
-          Sign In First
+          Sign in to leave a comment
         </Link>
       )}
-      <h1 className='font-bold text-4xl'>This is comment section</h1>
     </div>
   );
 };

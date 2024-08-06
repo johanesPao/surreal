@@ -7,7 +7,7 @@ import Link from "next/link";
 const NavLayout = () => {
   return (
     <motion.div
-      className='flex flex-col w-full overflow-hidden text-2xl lg:text-6xl p-5 items-center'
+      className='flex flex-col w-full overflow-hidden text-2xl lg:text-5xl p-5 items-center font-monaspaceKrypton'
       variants={height}
       initial='initial'
       animate='enter'
