@@ -38,9 +38,4 @@ next-env.d.ts
 # direnv
 .direnv/
 
-# db
-db/
-
 redis-dump.rdb
-
-
