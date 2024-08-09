@@ -1,6 +1,6 @@
 import { db } from "@/drizzle/db";
-import { users, InsertUser, InferAccount, InsertAccount } from "@/schema";
-import { sql } from "drizzle-orm";
+import { users, InsertUser, accounts, InferAccount, InsertAccount } from "@/schema";
+import { sql, and, eq } from "drizzle-orm";
 import { createAccount, getAccountCount } from "./account";
 
 export async function createUser(): Promise<InsertUser> {
@@ -18,7 +18,7 @@ export async function evalUserCreationOnProviderAccount(
   imageUrl: string,
   handleName?: string,
   email?: string
-) {
+): Promise<InsertAccount | undefined> {
   const accountNotExist = (await getAccountCount(provider, providerId)) === 0;
 
   console.log(
@@ -40,5 +40,29 @@ export async function evalUserCreationOnProviderAccount(
     }
 
     const insertedAccount = await createAccount(account);
+
+    return insertedAccount
+  }
+}
+
+export async function getUserId(
+  provider: InferAccount['provider'],
+  providerId: string
+): Promise<string | undefined> {
+  const account = await db
+    .select({
+      userId: accounts.userId
+    })
+    .from(accounts)
+    .where(
+      and(
+        eq(accounts.provider, provider),
+        eq(accounts.providerId, providerId)
+      )
+    )
+    .limit(1)
+
+  if (account.length === 1) {
+    return account[0].userId
   }
 }

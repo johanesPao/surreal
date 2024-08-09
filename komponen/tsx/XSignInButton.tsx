@@ -21,7 +21,7 @@ export const XSignInButton = ({ redirectOrigin }: XSignInButtonProps) => {
 
   return (
     <div
-      className='flex gap-2 items-center justify-center bg-black w-[300px] py-1 group cursor-pointer rounded-sm shadow-md'
+      className='flex gap-2 items-center justify-center w-[300px] py-1.5 border border-stone-800 group cursor-pointer rounded-md shadow-md hover:border-none hover:bg-white hover:text-pitch-black'
       onClick={() => {
         loginUsingX.value = true;
         signIn("twitter", { callbackUrl: redirectOrigin });

@@ -52,7 +52,7 @@ const Spack = ({
               <SandpackFileExplorer />
             </div>
           )}
-          <div className='bg-[#282828] px-[5%] lg:px-[30%] grow'>
+          <div className='bg-stone-900/100 py-4 px-[5%] lg:px-[30%] grow'>
             <SandpackCodeEditor
               showTabs
               showLineNumbers
@@ -78,6 +78,7 @@ const Spack = ({
                   language: sql(),
                 },
               ]}
+              className="mt-4 rounded-t-xl overflow-hidden"
             />
             {denganPreview && (
               <SandpackPreview
@@ -85,7 +86,7 @@ const Spack = ({
                 //     borderRadius: "0.5rem",
                 //     overflow: "hidden"
                 // }}
-                className='mb-4 rounded-xl overflow-hidden'
+                className='mb-4 rounded-b-xl overflow-hidden'
               />
             )}
           </div>

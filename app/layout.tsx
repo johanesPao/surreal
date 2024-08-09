@@ -21,6 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
+  let user: string | undefined;
 
   if (session) {
     await evalUserCreationOnProviderAccount(
@@ -51,7 +52,7 @@ export default async function RootLayout({
       `}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body className="overflow-auto">{children}</body>
     </html>
   );
 }

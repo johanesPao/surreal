@@ -9,7 +9,7 @@ type ImageProps = {
 
 export const ImageBlock = ({ url, caption = "" }: ImageProps) => {
   return (
-    <div className='flex flex-col lg:flex-row bg-[#282828] py-5 px-[5%] lg:px-[30%] shadow-lg items-start lg:items-center gap-7'>
+    <div className='flex flex-col lg:flex-row bg-stone-900/100 py-5 px-[5%] lg:px-[30%] shadow-lg items-start lg:items-center gap-7'>
       <Suspense fallback={<span>Loading image</span>}>
         <img
           className='rounded-lg border-[4px] border-[#339966] shadow-lg'

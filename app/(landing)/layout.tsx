@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <div className="flex flex-col h-full">
       <Header />
-      <main className="flex flex-col grow bg-cobalt-dusty-blue-950">
+      <main className="flex flex-col grow">
         {children}
       </main>
     </div>

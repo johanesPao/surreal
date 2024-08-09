@@ -23,14 +23,14 @@ export const LinkedInSignInButton = ({
 
   return (
     <div
-      className='flex gap-2 items-center justify-center bg-[#0a66c2] w-[300px] py-1 group cursor-pointer rounded-sm shadow-md'
+      className='flex gap-2 items-center justify-center w-[300px] py-1.5 group border border-stone-800 cursor-pointer rounded-md shadow-md hover:border-none hover:bg-white hover:text-pitch-black'
       onClick={() => {
         loginUsingLinkedIn.value = true;
         signIn("linkedin", { callbackUrl: redirectOrigin });
       }}
     >
       <IconBrandLinkedin size={36} />
-      <span>Sign In with LinkedIn</span>
+      <span>Sign in with LinkedIn</span>
     </div>
   );
 };
