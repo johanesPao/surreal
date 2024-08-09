@@ -8,7 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "generate": "drizzle-kit generate",
-        "postInstall": "npm run generate"
+        "postbuild": "npm run generate"
     },
     "dependencies": {
         "@codemirror/autocomplete": "^6.16.2",
