@@ -24,6 +24,18 @@ const config: Config = {
         monaspaceXenon: ["var(--font-monaspace-xenon)"],
       },
       colors: {
+        "pitch-black": {
+          DEFAULT: "#000000"
+        },
+        "eerie-black": {
+          DEFAULT: "#1B1B1B"
+        },
+        "chinese-black": {
+          DEFAULT: "#141414"
+        },
+        "vampire-black": {
+          DEFAULT: "#090909"
+        },
         "special-background": {
           DEFAULT: "#fef6e4",
           "100": "#fcedc9",
