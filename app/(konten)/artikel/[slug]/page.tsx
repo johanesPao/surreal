@@ -1,3 +1,4 @@
+import '@/app/_css/globals.css'
 import fs from "fs";
 import path from "path";
 import dynamic from "next/dynamic";
@@ -15,7 +16,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { frontMatter }: ExtractedArtikelData = await getArtikel(params);
   return {
-    title: frontMatter.title,
+    title: `${process.env.NAMA_SITUS} - ${frontMatter.title}`,
     description: frontMatter.title,
   };
 }
@@ -41,8 +42,8 @@ export default async function Artikel({
   const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`));
 
   return (
-    <div className='relative h-full z-50 bg-cobalt-dusty-blue-950 flex flex-col'>
-      <article className='pt-[72px] w-full z-[70] bg-cobalt-dusty-blue-950 text-[14px] lg:text-[16px]'>
+    <div className='relative h-full z-50 bg-pitch-black flex flex-col'>
+      <article className='pt-[72px] w-full z-[70] text-[14px] lg:text-[16px]'>
         <MDXContent />
       </article>
     </div>

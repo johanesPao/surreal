@@ -20,7 +20,7 @@ export const TOCMobileComp = ({
   activeId: string;
 }) => {
   return (
-    <motion.div className='fixed bg-cobalt-off-blue bottom-0 left-0 py-1 px-[5%] w-full text-sm z-[51] shadow-[0_20px_25px_5px_rgba(0,0,0,0.1),0_8px_10px_6px_rgba(0,0,0,0.1)]'>
+    <motion.div className='fixed bg-eerie-black bottom-0 left-0 py-1 px-[5%] w-full text-sm z-[51] shadow-[0_20px_25px_5px_rgba(0,0,0,0.1),0_8px_10px_6px_rgba(0,0,0,0.1)]'>
       <div
         className='container relative overflow-clip flex justify-center group cursor-pointer'
         onMouseDown={() => {

@@ -26,7 +26,7 @@ const Mermaid = ({ ...props }: MrMaidProps) => {
 
   return (
     <div
-      className='mermaid bg-[#282828] flex flex-col shadow-lg py-0.5 px-[5%] lg:px-[30%] items-center'
+      className='mermaid bg-stone-900/100 flex flex-col shadow-lg py-0.5 px-[5%] lg:px-[30%] items-center'
       suppressHydrationWarning
     >
       {chart}

@@ -28,8 +28,8 @@ const BlockQuote = ({ tipe = "default", judul, konten }: BlockQuoteProps) => {
     case "info":
       defaultSchema = {
         ikon: <GrInfo size={40} color={`#FFDE4D`} className='-z-100' />,
-        warnaBorder: "border-cobalt-off-blue-800/100",
-        warnaBackground: "bg-cobalt-blue-400/60",
+        warnaBorder: "border-stone-900/100",
+        warnaBackground: "bg-slate-900/60",
       };
       break;
     case "warning":

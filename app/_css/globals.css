@@ -4,7 +4,7 @@
 
 :root {
   --default-font-color: #fef6e4;
-  --bg-color: #1e262e;
+  --bg-color: #000000;
 }
 
 @media (min-width: 1024px) {

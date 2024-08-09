@@ -5,7 +5,7 @@ import Image from "next/image";
 const ArtikelAuthorCard = () => {
   return (
     <div className='px-[5%] lg:px-[30%] mt-20 ml-16 pt-5 font-monaspaceArgon'>
-      <div className='relative w-full bg-slate-900 rounded-tl-md rounded-tr-3xl rounded-bl-3xl rounded-br-md p-10 shadow-xl flex flex-col items-start gap-5 text-stone-300 text-[14px] first-letter:text-[20px]'>
+      <div className='relative w-full bg-stone-900 rounded-tl-md rounded-tr-3xl rounded-bl-3xl rounded-br-md p-10 shadow-xl flex flex-col items-start gap-5 text-stone-300 text-[14px] first-letter:text-[20px]'>
         <Image
           src='https://f002.backblazeb2.com/file/surreal-assets/me.jpg'
           alt='Avatar of Johanes Indra Pradana Pao'

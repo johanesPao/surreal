@@ -1,13 +1,12 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import TeksKetikan from "@/komponen/tsx/TeksKetikan";
-import { IconBurger, IconTerminal, IconTerminal2 } from "@tabler/icons-react";
+import { IconBackslash, IconMap2 } from "@tabler/icons-react";
 
 const Header = () => {
-  const { scrollYProgress } = useScroll();
   return (
-    <div className='h-auto py-[20px] px-[5%] lg:px-[30%] bg-cobalt-off-blue w-full flex flex-col gap-1 justify-between sticky top-0 z-10'>
+    <div className='h-auto py-[20px] px-[5%] lg:px-[30%] bg-pitch-black w-full flex flex-col gap-1 justify-between sticky top-0 z-10'>
       <div className='flex flex-row'>
         <div className='grow'>
           <motion.strong
@@ -18,8 +17,8 @@ const Header = () => {
           >
             {`Johanes Pao`}
           </motion.strong>
-          <div className='flex flex-row gap-2 font-monaspaceNeon'>
-            <span>A</span>
+          <div className='flex flex-row gap-1 font-monaspaceNeon'>
+            <IconBackslash />
             <TeksKetikan
               teks={[
                 "Loving Husband and Father",
@@ -35,7 +34,7 @@ const Header = () => {
         </div>
         <div className='flex flex-col justify-around group cursor-pointer hover:animate-pulse z-10'>
           <div className='rounded-md'>
-            <IconTerminal className='' size={36} />
+            <IconMap2 className='' size={36} />
           </div>
         </div>
       </div>
