@@ -2,7 +2,6 @@
 
 import {
   IconMenu,
-  IconPlugConnected,
   IconX,
 } from "@tabler/icons-react";
 import { opsiStringDate } from "@/app/_interface-props/_format.props";
@@ -15,18 +14,21 @@ import { signal, effect } from "@preact-signals/safe-react";
 import Image from "next/image";
 import SignInWrapperComp from "./SignInWrapperComp";
 import UserNavLayout from "./UserNavLayout";
+import { getUserId } from "@/app/api/db/user";
+import { InferAccount } from "@/schema";
+import { useEffect } from "react";
 
 type ArticleNavHeaderProps = {
   frontMatter: FrontMatterArtikel;
   session: Session | null;
-  userId: string | undefined;
 };
 
 const navOpen = signal(false);
 const userNavOpen = signal(false);
 const initiateSignIn = signal(false);
+const userId = signal<string|undefined>(undefined)
 
-const ArticleNavHeader = ({ frontMatter, session, userId }: ArticleNavHeaderProps) => {
+const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
   effect(() => {
     if (initiateSignIn.value) {
       if (typeof window !== "undefined") {
@@ -34,6 +36,22 @@ const ArticleNavHeader = ({ frontMatter, session, userId }: ArticleNavHeaderProp
       }
     }
   });
+
+  useEffect(() => {
+    if (session) {
+      const getUser = async () => {
+        const user = await getUserId(
+          session.user.provider as InferAccount['provider'],
+          session.user.id
+        )
+        if (user) {
+          userId.value = user
+        }
+      }
+    
+      getUser()
+    }
+  })
 
   return (
     <motion.div className="relative">
@@ -95,7 +113,7 @@ const ArticleNavHeader = ({ frontMatter, session, userId }: ArticleNavHeaderProp
         {(userNavOpen.value && session) ? (
             <UserNavLayout
               session={session?.user}
-              userId={userId}
+              userId={userId.value}
             />
           ) : undefined
         }

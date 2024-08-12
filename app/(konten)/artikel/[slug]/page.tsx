@@ -5,6 +5,10 @@ import dynamic from "next/dynamic";
 import type { Metadata, ResolvingMetadata } from "next";
 import { getArtikel } from "@/app/_lib/_artikel/artikel";
 import { ExtractedArtikelData } from "@/app/_types/extracted_artikel_data";
+import { TableOfContents } from '@/komponen/tsx/TableOfContents';
+import { auth } from '@/auth';
+import ArtikelAuthorCard from '@/komponen/tsx/ArtikelAuthorCard';
+import ArtikelComment from '@/komponen/tsx/ArtikelComment';
 
 type Props = {
   params: { slug: string };
@@ -36,15 +40,20 @@ export default async function Artikel({
   params: { slug: string };
 }) {
   const { slug } = params;
-
-  const dataArtikel: ExtractedArtikelData = await getArtikel(params);
+  const session = await auth();
+  
   // import file MDX secara dinamis berdasar slug
   const MDXContent = dynamic(() => import(`@/(artikel)/${slug}.mdx`));
+  // dataArtikel, terutama toc
+  const dataArtikel: ExtractedArtikelData = await getArtikel(params);
 
   return (
     <div className='relative h-full z-50 bg-pitch-black flex flex-col'>
       <article className='pt-[72px] w-full z-[70] text-[14px] lg:text-[16px]'>
         <MDXContent />
+        {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
+        <ArtikelAuthorCard />
+        <ArtikelComment session={session} />
       </article>
     </div>
   );
