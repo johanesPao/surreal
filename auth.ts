@@ -3,6 +3,7 @@ import LinkedInProvider, {
   LinkedInProfile,
 } from "next-auth/providers/linkedin";
 import TwitterProvider, { TwitterProfile } from "next-auth/providers/twitter";
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -34,6 +35,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       },
     }),
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+      async profile(profile: GoogleProfile) {
+        console.log(profile);
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          provider: "google"
+        }
+      }
+    })
   ],
   pages: {
     signIn: "/auth/signin",
@@ -70,6 +85,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               image: linkedinData.picture,
             };
             break;
+          case "google":
+            const googleData = profile as GoogleProfile;
+            token = {
+              ...token,
+              provider: account.provider,
+              id: googleData.sub,
+              name: googleData.name,
+              email: googleData.email,
+              image: googleData.picture
+            }
         }
       }
       return token;
