@@ -1,6 +1,6 @@
 'use client'
 
-import { IconBrandLinkedin, IconBrandX } from "@tabler/icons-react";
+import { IconBrandGoogle, IconBrandLinkedin, IconBrandX } from "@tabler/icons-react";
 import { Session } from "next-auth";
 
 type UserAccountNavProps = {
@@ -9,6 +9,15 @@ type UserAccountNavProps = {
 }
 
 const UserAccountNav = ({ userId, session }: UserAccountNavProps) => {
+  let icon: React.ReactElement | undefined = undefined;
+  switch (session.provider) {
+    case "linkedin":
+      icon = <IconBrandLinkedin/>
+    case "twitter":
+      icon = <IconBrandX />
+    case "google":
+      icon = <IconBrandGoogle />
+  }
   return (
     <div
       className="flex flex-col gap-1 items-center"
@@ -17,11 +26,7 @@ const UserAccountNav = ({ userId, session }: UserAccountNavProps) => {
       <span className="text-xs text-stone-500">{userId}</span>
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
-          {session.provider === 'linkedin' ? (
-            <IconBrandLinkedin />
-          ) : (
-            <IconBrandX />
-          )}
+          {icon}
           <span>{session.name}</span>
         </div>
         {session.provider === 'twitter' && (

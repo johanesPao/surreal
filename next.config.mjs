@@ -44,6 +44,11 @@ const nextConfig = {
         hostname: "**.twimg.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "**.googleusercontent.com",
+        port: "",
+      },
     ],
   },
 };
