@@ -1,3 +1,5 @@
+'use server'
+
 import { db } from "@/drizzle/db";
 import { users, InsertUser, accounts, InferAccount, InsertAccount } from "@/schema";
 import { sql, and, eq } from "drizzle-orm";
