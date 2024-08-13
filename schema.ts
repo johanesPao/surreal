@@ -7,6 +7,7 @@ import {
   uuid,
   boolean,
   pgTable,
+  jsonb,
 } from "drizzle-orm/pg-core";
 import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
@@ -71,7 +72,7 @@ export const comments = pgTable("comment", {
   accountId: uuid("account_id")
     .notNull()
     .references(() => accounts.accountId, { onDelete: "cascade" }),
-  content: text("content").notNull(),
+  content: jsonb('content').notNull(),
   createdAt: timestamp("created_at", {
     mode: "date",
     precision: 3,

@@ -1,5 +1,5 @@
 DO $$ BEGIN
- CREATE TYPE "public"."provider" AS ENUM('linkedin', 'twitter');
+ CREATE TYPE "public"."provider" AS ENUM('linkedin', 'twitter', 'google');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS "comment" (
 	"article_id" text NOT NULL,
 	"comment_id" serial NOT NULL,
 	"account_id" uuid NOT NULL,
-	"content" text NOT NULL,
+	"content" jsonb NOT NULL,
 	"created_at" timestamp (3) DEFAULT now(),
 	"updated_at" timestamp (3)
 );

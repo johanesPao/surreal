@@ -13,10 +13,13 @@ const UserAccountNav = ({ userId, session }: UserAccountNavProps) => {
   switch (session.provider) {
     case "linkedin":
       icon = <IconBrandLinkedin/>
+      break;
     case "twitter":
       icon = <IconBrandX />
+      break;
     case "google":
       icon = <IconBrandGoogle />
+      break;
   }
   return (
     <div
