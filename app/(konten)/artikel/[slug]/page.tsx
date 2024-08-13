@@ -53,7 +53,7 @@ export default async function Artikel({
         <MDXContent />
         {dataArtikel.toc && <TableOfContents nodes={dataArtikel.toc} />}
         <ArtikelAuthorCard />
-        <ArtikelComment session={session} />
+        <ArtikelComment session={session} artikelId={slug} />
       </article>
     </div>
   );

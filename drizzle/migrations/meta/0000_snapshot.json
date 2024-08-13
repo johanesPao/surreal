@@ -1,5 +1,5 @@
 {
-  "id": "0652fd8c-4729-4e81-96d3-1e98a853856a",
+  "id": "adea558e-8ffb-43d3-bb78-8f4b661f6819",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -138,7 +138,7 @@
         },
         "content": {
           "name": "content",
-          "type": "text",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
@@ -212,7 +212,8 @@
       "schema": "public",
       "values": [
         "linkedin",
-        "twitter"
+        "twitter",
+        "google"
       ]
     }
   },
