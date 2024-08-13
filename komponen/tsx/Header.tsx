@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import TeksKetikan from "@/komponen/tsx/TeksKetikan";
-import { IconBackslash, IconMap2 } from "@tabler/icons-react";
+import { IconMap2 } from "@tabler/icons-react";
 
 const Header = () => {
   return (
@@ -18,7 +18,7 @@ const Header = () => {
             {`Johanes Pao`}
           </motion.strong>
           <div className='flex flex-row gap-1 font-monaspaceNeon'>
-            <IconBackslash />
+            \
             <TeksKetikan
               teks={[
                 "Loving Husband and Father",
