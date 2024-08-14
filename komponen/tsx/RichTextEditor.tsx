@@ -4,24 +4,33 @@ import '@/app/_css/globals.css'
 import { Session } from 'next-auth';
 import { effect, signal } from '@preact-signals/safe-react';
 import Image from 'next/image';
-import { useEditor, EditorContent, BubbleMenu } from '@tiptap/react';
-import Placeholder from '@tiptap/extension-placeholder';
-import Document from '@tiptap/extension-document';
-import History from '@tiptap/extension-history';
-import Heading from '@tiptap/extension-heading';
-import Paragraph from '@tiptap/extension-paragraph';
-import Text from '@tiptap/extension-text';
-import TextAlign from '@tiptap/extension-text-align';
-import Bold from '@tiptap/extension-bold';
-import Italic from '@tiptap/extension-italic';
-import Strike from '@tiptap/extension-strike';
+import { useEditor, EditorContent, FloatingMenu } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import { Mathematics } from '@tiptap-pro/extension-mathematics';
-import 'katex/dist/katex.min.css';
 import CharacterCount from '@tiptap/extension-character-count';
+import Document from '@tiptap/extension-document';
+import { Footnotes, FootnoteReference, Footnote } from 'tiptap-footnotes';
+import Highlight from '@tiptap/extension-highlight';
+import { Image as TTImage } from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
+import Placeholder from '@tiptap/extension-placeholder';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
+import TaskItem from '@tiptap/extension-task-item';
+import TaskList from '@tiptap/extension-task-list';
+import TextAlign from '@tiptap/extension-text-align';
+import Typography from '@tiptap/extension-typography';
+import Underline from '@tiptap/extension-underline'
+import 'katex/dist/katex.min.css';
 
 import { createComment } from '@/app/api/db/comment';
 import { InferAccount } from '@/schema';
 import { TInsertCommentData } from '@/app/_types/query';
+import { IconBold, IconFileExport, IconItalic, IconStrikethrough, IconSubscript, IconSuperscript, IconSwipeDown, IconUnderline } from '@tabler/icons-react';
 
 type RichTextEditorProps = {
     userSession: Session['user'],
@@ -35,30 +44,37 @@ const warning = signal<"text-green-500" | "text-orange-500" | "text-red-500">("t
 const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
     const editor = useEditor({
         extensions: [
-            Placeholder.configure({
-                placeholder: 'Write your comments ...'
+            StarterKit.configure({
+                codeBlock: false,
+                document: false
             }),
-            Document,
-            History,
-            Heading,
-            Paragraph,
-            Text,
-            TextAlign.configure({
-                types: ['heading', 'paragraph']
+            Document.extend({
+                content: 'block+ footnotes?',
             }),
-            Bold,
-            Italic,
-            Strike,
             Mathematics,
             CharacterCount.configure({
                 limit: characterCountLimit
-            })
+            }),
+            Footnotes,
+            Footnote,
+            FootnoteReference,
+            Highlight,
+            Placeholder.configure({
+                placeholder: 'Write your comments ...'
+            }),
+            TextAlign.configure({
+                types: ['heading', 'paragraph']
+            }),
+            Subscript,
+            Superscript
         ],
         enableContentCheck: true,
         
         editorProps: {
             attributes: {
-                class: 'focus:outline-none min-h-[150px]'
+                class: (
+                    'focus:outline-none h-[150px] prose dark:prose-invert max-w-none [&_ol]:list-decimal [&_ul]:list-disc'
+                ),
             }
         },
         editable: true,
@@ -129,31 +145,92 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
                     </div>
                 </div>
             </div>
+            <div className="flex">
+                <div className="flex flex-col items-center gap-1 px-3">
+                    <span className="text-[9px] text-gray-400">Formatting</span>
+                    <div className="grid grid-cols-4 grid-flow-row gap-1.5">
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconBold
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleBold().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconItalic
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleItalic().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconStrikethrough
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleStrike().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconUnderline
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleUnderline().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconSubscript
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleSubscript().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconSuperscript
+                                size={15}
+                                onClick={() => editor.chain().focus().toggleSuperscript().run()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                    </div>
+                </div>
+                <div className="flex flex-col items-center gap-1 px-3">
+                    <span className="text-[9px] text-gray-400">References</span>
+                    <div className="grid grid-cols-4 grid-flow-row gap-1">
+                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
+                            <IconFileExport
+                                size={15}
+                                onClick={() => editor.commands.addFootnote()}
+                                className="text-eerie-black"
+                            />
+                        </span>
+                    </div>
+                </div>
+            </div>
             <hr />
             <div className="overflow-y-scroll font-robotoMono text-[12px] grow">
                 {editor && (
-                    <BubbleMenu editor={editor} tippyOptions={{ duration: 100}}>
-                        <div className="bubble-menu">
+                    <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
+                        <div className="floating-menu">
                             <button
-                                onClick={() => editor.chain().focus().toggleBold().run()}
-                                className={editor.isActive('bold') ? 'is-active' : ''}
+                                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+                                className={editor.isActive('heading', { level: 1}) ? 'is-active' : ''}
                             >
-                                Bold
+                                H1
                             </button>
                             <button
-                                onClick={() => editor.chain().focus().toggleItalic().run()}
-                                className={editor.isActive('italic') ? 'is-active' : ''}
+                                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                                className={editor.isActive('heading', { level: 2}) ? 'is-active' : ''}
                             >
-                                Italic
+                                H2
                             </button>
                             <button
-                                onClick={() => editor.chain().focus().toggleStrike().run()}
-                                className={editor.isActive('strike') ? 'is-active' : ''}
+                                onClick={() => editor.chain().focus().toggleBulletList().run()}
+                                className={editor.isActive('bulletList') ? 'is-active' : ''}
                             >
-                                Strike
+                                Bullet List
                             </button>
                         </div>
-                    </BubbleMenu>
+                    </FloatingMenu>
                 )}
                 <EditorContent editor={editor} />
             </div>
