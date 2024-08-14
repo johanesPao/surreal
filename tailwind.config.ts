@@ -10,6 +10,38 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            p: {
+              fontSize: '11px',
+              lineHeight: '1.5'
+            },
+            h1: {
+              fontSize: '18px',
+              marginTop: '0.5em',
+              marginBottom: '1em',
+              lineHeight: '0.5'
+              
+            },
+            h2: {
+              fontSize: '16px',
+              marginTop: '0.5em',
+              marginBottom: '1em',
+              lineHeight: '0.5'
+            },
+            h3: {
+              fontSize: '14px',
+              marginTop: '0.5em',
+              marginBottom: '1em',
+              lineHeight: '0.5'
+            },
+            ol: {
+              fontSize: '11px'
+            }
+          }
+        }
+      },
       fontFamily: {
         mono: ["var(--font-jetbrains-mono)"],
         inconsolata: ["var(--font-inconsolata)"],
