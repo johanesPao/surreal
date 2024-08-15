@@ -36,7 +36,7 @@ export function useMDXComponents(komponenMDX: MDXComponents): MDXComponents {
           fontVariantLigatures: "common-ligatures",
           fontFeatureSettings: "'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'cv03', 'cv30', 'cv60', 'cv61', 'calt', 'zero', 'dlig'"
         }}
-        className='px-[5%] lg:px-[30%] first-letter:text-3xl first-letter:font-bold text-[16px]'
+        className='first-letter:text-[14px] px-[5%] lg:px-[20%] first-letter:font-bold text-[12px]'
         {...props}
       />
     ),

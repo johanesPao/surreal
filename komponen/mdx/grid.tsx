@@ -14,7 +14,7 @@ const Grid = ({ barisData, definisiKolom, ...props }: AgGridProps) => {
     useState<AgGridProps["definisiKolom"]>(definisiKolom);
 
   return (
-    <div className='ag-theme-quartz-dark flex h-96 bg-stone-900/100 py-0.5 px-[5%] lg:px-[30%] shadow-lg items-center'>
+    <div className='ag-theme-quartz-dark flex h-96 bg-stone-900/100 py-0.5 px-[5%] lg:px-[20%] shadow-lg items-center'>
       <AgGridReact
         rowData={data}
         columnDefs={kolom}

@@ -1,17 +1,23 @@
 "use client";
 
+import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
 import Image from "next/image";
 
 const ArtikelAuthorCard = () => {
+  const [diDesktop] = useDesktopOrMobile();
+  const authorAvatarSize = diDesktop ? 80 : 60;
+  const leftTopArrayDim = diDesktop ? ['mt-[50px]', 'ml-[50px]', '-top-[55px]', '-left-[40px]'] : ['mt-[20px]', 'ml-[40px]', '-top-[35px]', '-left-[40px]']
+  const [ mt, ml, t, l ] = leftTopArrayDim
+
   return (
-    <div className='px-[5%] lg:px-[30%] mt-20 ml-16 pt-5 font-monaspaceArgon'>
-      <div className='relative w-full bg-stone-900 rounded-tl-md rounded-tr-3xl rounded-bl-3xl rounded-br-md p-10 shadow-xl flex flex-col items-start gap-5 text-stone-300 text-[14px] first-letter:text-[20px]'>
+    <div className={`px-[5%] lg:px-[20%] ${mt} ${ml} pt-5 font-monaspaceArgon`}>
+      <div className='relative w-full bg-stone-900 rounded-tl-md rounded-tr-3xl rounded-bl-3xl rounded-br-md p-5 shadow-xl flex flex-col items-start gap-5 text-stone-300 text-[10px]'>
         <Image
           src='https://f002.backblazeb2.com/file/surreal-assets/me.jpg'
           alt='Avatar of Johanes Indra Pradana Pao'
-          width={120}
-          height={120}
-          className='absolute -top-[85px] -left-[60px] -rotate-[18deg] rounded-xl shadow-lg mt-1 mr-5 mb-1 -z-10'
+          width={authorAvatarSize}
+          height={authorAvatarSize}
+          className={`absolute ${t} ${l} -rotate-[18deg] rounded-xl shadow-lg mt-1 mr-5 mb-1 -z-10`}
         />
         <p className='backdrop-invert-0 mix-blend-difference'>
           {`Johanes Indra Pradana Pao is a Business Analyst Senior Supervisor with over a decade of experience turning data into insights. With a knack for creating financial models and machine learning magic, Pao has a history of solving complex problems—like bridging data gaps during a major ERP overhaul.`}

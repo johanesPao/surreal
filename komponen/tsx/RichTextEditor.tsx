@@ -31,6 +31,7 @@ import { createComment } from '@/app/api/db/comment';
 import { InferAccount } from '@/schema';
 import { TInsertCommentData } from '@/app/_types/query';
 import { IconBold, IconFileExport, IconItalic, IconStrikethrough, IconSubscript, IconSuperscript, IconSwipeDown, IconUnderline } from '@tabler/icons-react';
+import useDesktopOrMobile from '@/app/_lib/_hooks_wrapper/useDesktopOrMobile';
 
 type RichTextEditorProps = {
     userSession: Session['user'],
@@ -42,6 +43,8 @@ const characterCountLimit = 5000;
 const warning = signal<"text-green-500" | "text-orange-500" | "text-red-500">("text-green-500")
 
 const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
+    const [diDesktop] = useDesktopOrMobile();
+
     const editor = useEditor({
         extensions: [
             StarterKit.configure({
@@ -119,7 +122,7 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
     return (
         <div className="flex flex-col w-full gap-2">
             <div className="flex justify-between items-center">
-                <div className="flex gap-2 items-center">
+                {/* <div className="flex gap-2 items-center">
                     <Image
                         src={userSession.image as string}
                         alt={userSession.name as string}
@@ -133,19 +136,21 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
                     </div>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <div className="flex flex-col text-end font-inconsolata text-[11px] text-gray-400">
-                        <span><span  className={`${warning.value}`}>{((characterCountLimit - editor.storage.characterCount.characters()) as number).toLocaleString('en-us')}</span> chars left</span>
-                        <span>{(editor.storage.characterCount.words() as number).toLocaleString('en-us')} words written</span>
-                    </div>
+                    {diDesktop && (
+                        <div className="flex flex-col text-end font-inconsolata text-[11px] text-gray-400">
+                            <span><span  className={`${warning.value}`}>{((characterCountLimit - editor.storage.characterCount.characters()) as number).toLocaleString('en-us')}</span> chars left</span>
+                            <span>{(editor.storage.characterCount.words() as number).toLocaleString('en-us')} words written</span>
+                        </div>
+                    )}
                     <div 
                         className="p-2 bg-vampire-black flex items-center cursor-pointer shadow-xl rounded-md active:scale-90"
                         onClick={() => handleSubmit()}
                     >
                         Submit
                     </div>
-                </div>
+                </div> */}
             </div>
-            <div className="flex">
+            {/* <div className="flex">
                 <div className="flex flex-col items-center gap-1 px-3">
                     <span className="text-[9px] text-gray-400">Formatting</span>
                     <div className="grid grid-cols-4 grid-flow-row gap-1.5">
@@ -205,8 +210,8 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
                         </span>
                     </div>
                 </div>
-            </div>
-            <hr />
+            </div> */}
+            {/* <hr /> */}
             <div className="overflow-y-scroll font-robotoMono text-[12px] grow">
                 {editor && (
                     <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Sandpack,
   SandpackProvider,
   SandpackLayout,
   SandpackCodeEditor,
@@ -52,7 +51,7 @@ const Spack = ({
               <SandpackFileExplorer />
             </div>
           )}
-          <div className='bg-stone-900/100 py-4 px-[5%] lg:px-[30%] grow'>
+          <div className='bg-stone-900/100 py-4 px-[5%] lg:px-[20%] grow'>
             <SandpackCodeEditor
               showTabs
               showLineNumbers
