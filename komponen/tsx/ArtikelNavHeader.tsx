@@ -17,6 +17,7 @@ import UserNavLayout from "./UserNavLayout";
 import { getUserId } from "@/app/api/db/user";
 import { InferAccount } from "@/schema";
 import { useEffect } from "react";
+import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
 
 type ArticleNavHeaderProps = {
   frontMatter: FrontMatterArtikel;
@@ -29,6 +30,10 @@ const initiateSignIn = signal(false);
 const userId = signal<string|undefined>(undefined)
 
 const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
+  const [diDesktop] = useDesktopOrMobile()
+  const iconSize = diDesktop ? 16 : 14;
+  const navAvatarSize = diDesktop ? 32 : 22;
+
   effect(() => {
     if (initiateSignIn.value) {
       if (typeof window !== "undefined") {
@@ -56,7 +61,7 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
   return (
     <motion.div className="relative">
       <motion.div
-        className='fixed top-0 left-0 w-screen z-[52] flex flex-col px-4 lg:px-8 py-1.5 bg-chinese-black justify-between items-baseline shadow-xl'
+        className='fixed top-0 left-0 w-screen z-[52] flex flex-col px-[5%] lg:px-[2.5%] py-1.5 bg-chinese-black justify-between items-baseline shadow-xl'
         initial={{
           y: -40,
         }}
@@ -76,11 +81,11 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
             className='flex gap-1 cursor-pointer'
             onMouseDown={() => (navOpen.value = !navOpen.value)}
           >
-            {navOpen.value ? <IconX /> : <IconMenu />}
+            {navOpen.value ? <IconX size={iconSize}/> : <IconMenu size={iconSize} />}
           </div>
-          <div className='flex gap-2 items-baseline flex-grow place-content-center'>
-            <p className='text-xl font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
-            <p className='text-[12px] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
+          <div className='flex flex-col flex-grow items-center'>
+            <p className='text-[14px] lg:text-[16px] font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
+            <p className='lg:text-[8px] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
               {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
                 new Date(frontMatter.createdAt)
               )}
@@ -91,8 +96,8 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
               <Image
                 src={session.user.image}
                 alt={session.user.name || ""}
-                width={32}
-                height={32}
+                width={navAvatarSize}
+                height={navAvatarSize}
                 className='rounded-full cursor-pointer'
                 onClick={() =>
                   userNavOpen.value = !userNavOpen.value

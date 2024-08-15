@@ -42,8 +42,8 @@ const SyntaxHighlight = ({ ...props }: SyntaxProps) => {
 
   return (
     <div className='flex flex-col'>
-      <div className='flex flex-row px-[5%] lg:px-[30%] w-0'>
-        <span className='px-4 py-0.5 bg-stone-900/100 text-sm italic rounded-tl-lg rounded-tr-lg'>
+      <div className='flex flex-row px-[5%] lg:px-[20%] w-0'>
+        <span className='px-4 py-0.5 bg-stone-900/100 font-inconsolata text-[10px] rounded-tl-lg rounded-tr-lg'>
           {bahasa.toUpperCase()}
         </span>
       </div>

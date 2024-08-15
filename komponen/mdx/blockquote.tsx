@@ -44,16 +44,16 @@ const BlockQuote = ({ tipe = "default", judul, konten }: BlockQuoteProps) => {
   }
 
   return (
-    <div className='px-[5%] lg:px-[30%] p-5'>
+    <div className='px-[5%] lg:px-[20%] p-5'>
       <div
         className={`group relative overflow-clip rounded-md border-l-[18px] ${defaultSchema.warnaBorder} ${defaultSchema.warnaBackground} p-4`}
       >
         <span className='absolute top-0 right-0 p-3 rotate-[30deg] opacity-50 scale-90 group-hover:opacity-100 group-hover:scale-110 group-hover:rotate-[15deg] group-hover:animate-pulse group-hover:duration-200'>
           {defaultSchema.ikon}
         </span>
-        <p className='font-bold text-xl pb-2'>{judul}</p>
+        <p className='font-bold text-[14px] pb-2'>{judul}</p>
         {konten.split("<br />").map((paragraf, index) => (
-          <p key={index}>{paragraf}</p>
+          <p className="text-[11px]" key={index}>{paragraf}</p>
         ))}
       </div>
     </div>

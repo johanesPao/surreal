@@ -44,9 +44,9 @@ export const TOCLink = ({
   });
 
   const fontSize: fontSizeKey = {
-    1: `text-[16px] font-bold`,
-    2: `text-[14px] ml-4`,
-    3: `text-[12px] ml-8`,
+    1: `text-[12px] font-bold`,
+    2: `text-[10px] ml-4`,
+    3: `text-[8px] ml-8`,
   };
 
   return (

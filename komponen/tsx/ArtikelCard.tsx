@@ -17,11 +17,11 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
   return (
     <div
       key={artikel.slug}
-      className=' first:pt-[20px] pb-[2px] last:pb-[20px] px-[5%] lg:px-[30%] font-monaspaceKrypton'
+      className=' first:pt-[20px] pb-[2px] last:pb-[20px] font-monaspaceKrypton'
     >
       <div className='flex'>
         <Link
-          className='text-[22px] font-bold text-pretty'
+          className='text-[14px] lg:text-[16px] font-bold text-pretty'
           href={`/artikel/${artikel.slug}` as Route}
         >
           {artikel.frontMatter.title}
@@ -41,7 +41,7 @@ const ArtikelCard = ({ artikel }: ArtikelCardProps) => {
           })}
         </div>
       </div>
-      <p className='text-[12px] font-monaspaceArgon' suppressHydrationWarning>
+      <p className='text-[9px] lg:text-[10px] font-monaspaceArgon' suppressHydrationWarning>
         {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
           new Date(artikel.frontMatter.createdAt)
         )}

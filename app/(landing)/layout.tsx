@@ -1,19 +1,6 @@
 import "@/app/_css/globals.css";
 
 import Header from "@/komponen/tsx/Header";
-import {
-  inter,
-  jetbrainsMono,
-  robotoMono,
-  inconsolata,
-  wotfard,
-  bizUDMincho,
-  monaspaceArgon,
-  monaspaceKrypton,
-  monaspaceNeon,
-  monaspaceRadon,
-  monaspaceXenon
-} from "@/app/_fonts/fonts";
 
 type Metadata = {
   title: {
@@ -47,6 +34,9 @@ export default function RootLayout({
       <main className="flex flex-col grow">
         {children}
       </main>
+      <footer className='absolute bottom-0 w-screen font-wotfard text-slate-500 font-thin text-center pt-10 pb-4 text-[10px]'>
+        Johanes Pao 🐠 {new Date().getFullYear()}
+      </footer>
     </div>
   );
 }

@@ -26,7 +26,7 @@ const TOCMobileContent = ({
       animate='open'
       exit='close'
     >
-      <motion.ul className='flex flex-col gap-6'>
+      <motion.ul className='flex flex-col gap-2'>
         {nodes.map((node, index) => {
           return (
             <TOCLink
