@@ -7,9 +7,9 @@ const FooterArtikel = () => {
 
   return (
     <footer
-      className={`flex w-full font-wotfard text-slate-500 font-thin justify-center pt-10 pb-4 ${
+      className={`flex w-full font-geistMono text-slate-500 text-[0.9rem] font-thin justify-center pt-10 pb-4 ${
         !diDesktop && "mb-16"
-      } opacity-70`}
+      }`}
     >
       Johanes Pao 🐠 {new Date().getFullYear()}
     </footer>

@@ -10,14 +10,14 @@ const Header = () => {
       <div className='flex flex-row'>
         <div className='grow'>
           <motion.strong
-            className='font-monaspaceKrypton text-[18px] lg:text-[24px]'
+            className='font-wotfard text-[2rem]'
             whileInView={{
               opacity: 1,
             }}
           >
             {`Johanes Pao`}
           </motion.strong>
-          <div className='flex flex-row gap-1 font-monaspaceNeon text-[10px] lg:text-[12px]'>
+          <div className='flex flex-row gap-1 text-[0.8rem]'>
             \
             <TeksKetikan
               teks={[

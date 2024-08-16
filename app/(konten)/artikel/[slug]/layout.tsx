@@ -3,6 +3,20 @@ import "katex/dist/katex.min.css";
 import "prismjs/themes/prism-tomorrow.min.css";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import {
+  inconsolata,
+  robotoMono,
+  jetbrainsMono,
+  wotfard,
+  bizUDMincho,
+  monaspaceArgon,
+  monaspaceKrypton,
+  monaspaceNeon,
+  monaspaceRadon,
+  monaspaceXenon,
+  geistSans,
+  geistMono
+} from '@/app/_fonts/fonts'
 import { Metadata, ResolvingMetadata } from "next";
 import { getArtikel } from "@/app/_lib/_artikel/artikel";
 import ArticleNavHeader from "@/komponen/tsx/ArtikelNavHeader";
@@ -37,7 +51,22 @@ export default async function ArtikelLayout({
   const session = await auth();
 
   return (
-    <div className="relative">
+    <div className={`
+      relative 
+      ${inconsolata.variable}
+      ${robotoMono.variable}
+      ${jetbrainsMono.variable}
+      ${wotfard.variable}
+      ${bizUDMincho.variable}
+      ${monaspaceArgon.variable}
+      ${monaspaceKrypton.variable}
+      ${monaspaceNeon.variable}
+      ${monaspaceRadon.variable}
+      ${monaspaceXenon.variable}
+      ${geistSans.variable}
+      ${geistMono.variable}
+    `}
+    >
       <ArticleNavHeader
         frontMatter={dataArtikel.frontMatter}
         session={session}

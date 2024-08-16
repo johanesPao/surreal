@@ -66,3 +66,15 @@ export const monaspaceXenon = localFont({
   display: "swap",
   variable: "--font-monaspace-xenon",
 });
+
+export const geistSans = localFont({
+  src: "./GeistVF.ttf",
+  display: "swap",
+  variable: "--font-geist-sans",
+})
+
+export const geistMono = localFont({
+  src: "./GeistMonoVf.ttf",
+  display: "swap",
+  variable: "--font-geist-mono",
+})
