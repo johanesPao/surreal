@@ -7,6 +7,7 @@ import RichTextEditor from "./RichTextEditor";
 import { signal } from "@preact-signals/safe-react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { IconMessage2, IconSquareRoundedX } from "@tabler/icons-react";
+import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
 
 type ArtikelCommentProps = {
   session: Session | null;
@@ -16,10 +17,12 @@ type ArtikelCommentProps = {
 const commentNavOpen = signal(false)
 
 const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
+  const [diDesktop] = useDesktopOrMobile();
+
   return (
-    <div className="fixed top-[45%] right-0 flex h-[calc(100%-45%-42px)]">
+    <div className={`fixed top-[45%] right-0 flex ${diDesktop ? 'h-[calc(100%-45%)] z-[54]' : 'h-[calc(100%-45%-42px)]'}`}>
       <div
-        className="relative top-[80%] h-[40px] px-2 place-content-center cursor-pointer"
+        className={`relative ${diDesktop ? 'top-[90%]' : 'top-[85%]'} w-[60px] h-[40px] px-2 place-content-center cursor-pointer`}
         onClick={() => commentNavOpen.value = true}
       >
         <motion.span
@@ -38,7 +41,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
       <AnimatePresence mode="wait">
         {commentNavOpen.value && (
             <motion.div 
-              className="w-screen h-full bg-stone-900/100"
+              className="w-screen h-full bg-stone-900/100 px-[5%] lg:px-[2.5%] py-4"
               initial={{x: "100%"}}
               animate={{x: 0}}
               exit={{x: "100%"}}
@@ -92,7 +95,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                   </div>
                 )}
                 <span 
-                  className="absolute top-[10px] right-[10px] text-red-700 cursor-pointer"
+                  className="absolute top-0 right-0 text-red-700 cursor-pointer"
                   onClick={() => commentNavOpen.value = false}
                 >
                   <IconSquareRoundedX />
