@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import Image from 'next/image';
 import Link from "next/link";
 import RichTextEditor from "./RichTextEditor";
-import { signal } from "@preact-signals/safe-react";
+import { effect, signal } from "@preact-signals/safe-react";
 import { AnimatePresence, motion } from 'framer-motion';
 import { IconMessage2, IconSquareRoundedX } from "@tabler/icons-react";
 import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
@@ -15,9 +15,24 @@ type ArtikelCommentProps = {
 };
 
 const commentNavOpen = signal(false)
+const commentContent = signal("")
+const characterCount = signal(0)
+const wordCount = signal(0)
+const charThresholdColor = signal<"text-green-500"|"text-orange-500"|"text-red-500">("text-green-500")
 
 const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
   const [diDesktop] = useDesktopOrMobile();
+  const characterLimit = 5000;
+  
+  effect(() => {
+    const remainingChar = characterLimit - characterCount.value;
+    const percentageLeft = remainingChar / characterLimit;
+    percentageLeft > 0.5
+      ? charThresholdColor.value = "text-green-500"
+      : percentageLeft > 0
+        ? charThresholdColor.value = "text-orange-500"
+        : charThresholdColor.value = "text-red-500"
+  })
 
   return (
     <div className={`fixed top-[45%] right-0 flex ${diDesktop ? 'h-[calc(100%-45%)] z-[54]' : 'h-[calc(100%-45%-42px)]'}`}>
@@ -55,7 +70,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
             >
               <div className="relative flex flex-col w-full h-full">
                 {!session ? (
-                  <div className="flex flex-col w-full h-full text-[11px] items-center place-content-center">
+                  <div className="flex flex-col w-full h-full max-h-full text-[11px] items-center place-content-center">
                     <div className="flex gap-2 items-center">
                       <span>
                         You need to
@@ -91,7 +106,35 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                       </div>
                     </div>
                     <hr className="border-stone-700"/>
-                    <RichTextEditor userSession={session.user} artikelId={artikelId}/>
+                    <RichTextEditor 
+                      userSession={session.user} 
+                      artikelId={artikelId} 
+                      content={commentContent}
+                      charCount={characterCount}
+                      wordCount={wordCount}
+                      limit={characterLimit}
+                    />
+                    <hr className="border-stone-700"/>
+                    <div className="flex w-ful justify-between items-center">
+                      <div className="flex flex-col text-[0.6rem] text-stone-400">
+                        <p>
+                          <span className={`${charThresholdColor.value}`}>
+                            {(characterLimit - characterCount.value).toLocaleString('en-us')}
+                          </span> {`character${characterLimit - characterCount.value <= 1 ? '' : 's'} left`}
+                        </p>
+                        <p>
+                          <span className="text-white">
+                            {wordCount.value === 0 
+                              ? 'Empty'
+                              : wordCount.value.toLocaleString('en-us')}
+                          </span> {`word${wordCount.value <= 1 ? '' : 's'}`}
+                        </p>
+                      </div>
+                      <div className="flex text-[0.7rem] bg-green-700 p-2 rounded-md hover:bg-green-600">
+
+                        <span>Post Comment</span>
+                      </div>
+                    </div>
                   </div>
                 )}
                 <span 
@@ -101,29 +144,10 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                   <IconSquareRoundedX />
                 </span>
               </div>
-              {/* <span onClick={() => commentNavOpen.value = false}>X</span> */}
             </motion.div>
         )}
       </AnimatePresence>
     </div>
-    // <div className='px-[5%] lg:px-[20%] pt-5 w-full flex flex-col gap-3'>
-    //   {!session ? (
-    //     <Link
-    //       href={{
-    //         pathname: "/auth/signin",
-    //         query: { originUrl: "/artikel/arrays-in-excel" },
-    //       }}
-    //       className="shadow-2xl"
-    //     >
-    //       Sign in to leave a comment
-    //     </Link>
-    //   ) : (
-    //     <div className="w-full bg-stone-900 p-4 shadow-xl shadow-pitch-black/10 rounded-md">
-    //       <RichTextEditor userSession={session.user} artikelId={artikelId}/>
-    //     </div>
-    //   )}
-    //   <span className="text-[12px]">Comment List</span>
-    // </div>
   );
 };
 
