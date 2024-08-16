@@ -2,7 +2,7 @@
 
 import '@/app/_css/globals.css'
 import { Session } from 'next-auth';
-import { effect, signal } from '@preact-signals/safe-react';
+import { effect, Signal, signal } from '@preact-signals/safe-react';
 import Image from 'next/image';
 import { useEditor, EditorContent, FloatingMenu } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -30,20 +30,30 @@ import 'katex/dist/katex.min.css';
 import { createComment } from '@/app/api/db/comment';
 import { InferAccount } from '@/schema';
 import { TInsertCommentData } from '@/app/_types/query';
-import { IconBold, IconFileExport, IconItalic, IconStrikethrough, IconSubscript, IconSuperscript, IconSwipeDown, IconUnderline } from '@tabler/icons-react';
+import { IconBold, IconCode, IconFileExport, IconH1, IconH2, IconH3, IconHighlight, IconItalic, IconList, IconStrikethrough, IconSubscript, IconSuperscript, IconSwipeDown, IconUnderline } from '@tabler/icons-react';
 import useDesktopOrMobile from '@/app/_lib/_hooks_wrapper/useDesktopOrMobile';
 
 type RichTextEditorProps = {
     userSession: Session['user'],
     artikelId: string,
+    content: Signal<string>,
+    charCount: Signal<number>,
+    wordCount: Signal<number>,
+    limit: number
 }
-
-const characterCountLimit = 5000;
 
 const warning = signal<"text-green-500" | "text-orange-500" | "text-red-500">("text-green-500")
 
-const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
+const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount, limit }: RichTextEditorProps) => {
     const [diDesktop] = useDesktopOrMobile();
+
+    effect(() => {
+        if (document) {
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault()
+            })
+        }
+    })
 
     const editor = useEditor({
         extensions: [
@@ -56,7 +66,7 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
             }),
             Mathematics,
             CharacterCount.configure({
-                limit: characterCountLimit
+                limit
             }),
             Footnotes,
             Footnote,
@@ -76,7 +86,7 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
         editorProps: {
             attributes: {
                 class: (
-                    'focus:outline-none h-[150px] prose dark:prose-invert max-w-none [&_ol]:list-decimal [&_ul]:list-disc'
+                    'h-full focus:outline-none prose dark:prose-invert max-w-none [&_ol]:list-decimal [&_ul]:list-disc'
                 ),
             }
         },
@@ -84,22 +94,17 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
         autofocus: false,
         parseOptions: {
             preserveWhitespace: 'full'
+        },
+        onUpdate: ({ editor }) => {
+            content.value = JSON.stringify(editor.getJSON())
+            charCount.value = editor.storage.characterCount.characters()
+            wordCount.value = editor.storage.characterCount.words()
         }
     })
 
     if (!editor) {
         return null
     }
-
-    effect(() => {
-        const remainingChar = characterCountLimit - editor.storage.characterCount.characters()
-        const percentageLeft = remainingChar / characterCountLimit
-        percentageLeft > 0.5 
-            ? warning.value = "text-green-500"
-            : percentageLeft > 0
-                ? warning.value = "text-orange-500"
-                : warning.value = "text-red-500"
-    })
 
     const handleSubmit = async () => {
         const insertCommentData: TInsertCommentData = {
@@ -120,125 +125,88 @@ const RichTextEditor = ({ userSession, artikelId }: RichTextEditorProps) => {
     }
 
     return (
-        <div className="flex flex-col w-full gap-2">
-            <div className="flex justify-between items-center">
-                {/* <div className="flex gap-2 items-center">
-                    <Image
-                        src={userSession.image as string}
-                        alt={userSession.name as string}
-                        width={36}
-                        height={36}
-                        className="rounded-full grow"
-                    />
-                    <div className="flex flex-col font-wotfard">
-                        <span>{userSession.name}</span>
-                        <span className="text-[9px] text-gray-400">{`using ${userSession.provider}`}</span>
-                    </div>
-                </div>
-                <div className="flex gap-2 items-center">
-                    {diDesktop && (
-                        <div className="flex flex-col text-end font-inconsolata text-[11px] text-gray-400">
-                            <span><span  className={`${warning.value}`}>{((characterCountLimit - editor.storage.characterCount.characters()) as number).toLocaleString('en-us')}</span> chars left</span>
-                            <span>{(editor.storage.characterCount.words() as number).toLocaleString('en-us')} words written</span>
-                        </div>
-                    )}
-                    <div 
-                        className="p-2 bg-vampire-black flex items-center cursor-pointer shadow-xl rounded-md active:scale-90"
-                        onClick={() => handleSubmit()}
-                    >
-                        Submit
-                    </div>
-                </div> */}
+        <div className="flex gap-2 h-full overflow-y-scroll">
+        <div className="flex flex-col gap-1 text-[0.8rem] overflow-y-scroll no-scrollbar w-fit px-1">
+            <div className={`${editor.isActive('bold') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconBold
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleBold().run()}
+                />
             </div>
-            {/* <div className="flex">
-                <div className="flex flex-col items-center gap-1 px-3">
-                    <span className="text-[9px] text-gray-400">Formatting</span>
-                    <div className="grid grid-cols-4 grid-flow-row gap-1.5">
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconBold
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleBold().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconItalic
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleItalic().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconStrikethrough
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleStrike().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconUnderline
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleUnderline().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconSubscript
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleSubscript().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconSuperscript
-                                size={15}
-                                onClick={() => editor.chain().focus().toggleSuperscript().run()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                    </div>
-                </div>
-                <div className="flex flex-col items-center gap-1 px-3">
-                    <span className="text-[9px] text-gray-400">References</span>
-                    <div className="grid grid-cols-4 grid-flow-row gap-1">
-                        <span className="bg-white rounded-md p-0.5 cursor-pointer group">
-                            <IconFileExport
-                                size={15}
-                                onClick={() => editor.commands.addFootnote()}
-                                className="text-eerie-black"
-                            />
-                        </span>
-                    </div>
-                </div>
-            </div> */}
-            {/* <hr /> */}
-            <div className="overflow-y-scroll font-robotoMono text-[12px] grow">
+            <div className={`${editor.isActive('italic') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconItalic
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleItalic().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('strike') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconStrikethrough
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleStrike().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('underline') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconUnderline
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleUnderline().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('subscript') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconSubscript
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleSubscript().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('superscript') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconSuperscript
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleSuperscript().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('highlight') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconHighlight
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleHighlight().run()}
+                />
+            </div>
+            <div className={`${editor.isActive('code') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                <IconCode
+                    size={32}
+                    onClick={() => editor.chain().focus().toggleCode().run()}
+                />
+            </div>
+        </div>
+        <div className="flex flex-col overflow-y-scroll grow">
+            <div className="font-robotoMono h-full">
                 {editor && (
                     <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
-                        <div className="floating-menu">
-                            <button
-                                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                                className={editor.isActive('heading', { level: 1}) ? 'is-active' : ''}
-                            >
-                                H1
-                            </button>
-                            <button
-                                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-                                className={editor.isActive('heading', { level: 2}) ? 'is-active' : ''}
-                            >
-                                H2
-                            </button>
-                            <button
-                                onClick={() => editor.chain().focus().toggleBulletList().run()}
-                                className={editor.isActive('bulletList') ? 'is-active' : ''}
-                            >
-                                Bullet List
-                            </button>
+                        <div className="floating-menu flex bg-stone-700 gap-1 rounded-md p-2">
+                            <div className={`${editor.isActive('heading', { level: 1 }) ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                                <IconH1
+                                    onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+                                />
+                            </div>
+                            <div className={`${editor.isActive('heading', { level: 2 }) ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                                <IconH2
+                                    onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                                />
+                            </div>
+                            <div className={`${editor.isActive('heading', { level: 3 }) ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                                <IconH3
+                                    onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+                                />
+                            </div>
+                            <div className={`${editor.isActive('bulletList') ? 'bg-green-700' : 'bg-stone-700'} rounded-md p-1`}>
+                                <IconList
+                                    onClick={() => editor.chain().focus().toggleBulletList().run()}
+                                />
+                            </div>
                         </div>
                     </FloatingMenu>
                 )}
-                <EditorContent editor={editor} />
+                <EditorContent editor={editor} className="h-full"/>
             </div>
+        </div>
         </div>
     )
 }

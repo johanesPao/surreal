@@ -14,30 +14,30 @@ const config: Config = {
         DEFAULT: {
           css: {
             p: {
-              fontSize: '11px',
+              fontSize: '0.8rem',
               lineHeight: '1.5'
             },
             h1: {
-              fontSize: '18px',
+              fontSize: '1.2rem',
               marginTop: '0.5em',
               marginBottom: '1em',
-              lineHeight: '0.5'
+              lineHeight: '1.5'
               
             },
             h2: {
-              fontSize: '16px',
+              fontSize: '1.1rem',
               marginTop: '0.5em',
               marginBottom: '1em',
-              lineHeight: '0.5'
+              lineHeight: '1.5'
             },
             h3: {
-              fontSize: '14px',
+              fontSize: '1rem',
               marginTop: '0.5em',
               marginBottom: '1em',
-              lineHeight: '0.5'
+              lineHeight: '1.5'
             },
             ol: {
-              fontSize: '11px'
+              fontSize: '0.8rem'
             }
           }
         }
