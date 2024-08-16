@@ -20,7 +20,7 @@ const ExcelLine = ({ children }: ExcelLineProps) => {
         },
       }}
     >
-      <span className='relative font-inconsolata font-bold'>{children}</span>
+      <span className='relative font-inconsolata'>{children}</span>
     </motion.span>
   );
 };

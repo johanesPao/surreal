@@ -1,4 +1,5 @@
 'use client'
+
 import Typewriter from "typewriter-effect";
 import { TeksKetikanProps } from "@/app/_interface-props/TeksKetikan.props";
 import { EKonstan } from "@/app/_enums/enums";

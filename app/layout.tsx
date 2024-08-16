@@ -9,7 +9,9 @@ import {
   monaspaceKrypton,
   monaspaceNeon,
   monaspaceRadon,
-  monaspaceXenon
+  monaspaceXenon,
+  geistSans,
+  geistMono
 } from '@/app/_fonts/fonts';
 import { auth } from "@/auth";
 import { InferAccount } from "@/schema";
@@ -49,6 +51,8 @@ export default async function RootLayout({
         ${monaspaceNeon.variable}
         ${monaspaceRadon.variable}
         ${monaspaceXenon.variable}
+        ${geistSans.variable}
+        ${geistMono.variable}
       `}
       suppressHydrationWarning
     >

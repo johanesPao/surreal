@@ -25,15 +25,15 @@ const UserAccountNav = ({ userId, session }: UserAccountNavProps) => {
     <div
       className="flex flex-col gap-1 items-center"
     >
-      <span className="text-[20px] font-bold font-monaspaceArgon">Account Details</span>
-      <span className="text-xs text-stone-500">{userId}</span>
+      <span className="text-[1.2rem] font-bold font-monaspaceArgon">Account Details</span>
+      <span className="text-[0.8rem] text-stone-500">{userId}</span>
       <div className="flex flex-col items-center">
         <div className="flex gap-2">
           {icon}
           <span>{session.name}</span>
         </div>
         {session.provider === 'twitter' && (
-          <span className="text-sm text-stone-500 italic">{`@${session.handleName}`}</span>
+          <span className="text-[1rem] text-stone-500 italic">{`@${session.handleName}`}</span>
         )}
       </div>
     </div>

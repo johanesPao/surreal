@@ -41,7 +41,7 @@ export const TOCMobileComp = ({
           />
         )}
         <motion.span
-          className={`${tocOpened.value ? "py-3 font-bold text-[14px]" : "py-2 text-[12px]"}`}
+          className={`${tocOpened.value ? "py-3 font-bold text-[1rem]" : "py-2 text-[0.8rem]"}`}
         >
           {!tocOpened.value && activeId
             ? nodes.filter((node) => node.id.replace("#", "") === activeId)[0]

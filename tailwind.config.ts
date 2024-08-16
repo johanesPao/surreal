@@ -54,6 +54,8 @@ const config: Config = {
         monaspaceNeon: ["var(--font-monaspace-neon)"],
         monaspaceRadon: ["var(--font-monaspace-radon)"],
         monaspaceXenon: ["var(--font-monaspace-xenon)"],
+        geistSans: ["var(--font-geist-sans)"],
+        geistMono: ["var(--font-geist-mono)"],
       },
       colors: {
         "pitch-black": {

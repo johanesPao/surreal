@@ -21,11 +21,10 @@
 
 body {
   background-color: var(--bg-color);
-  font-family: var(--font-monaspace-krypton);
+  font-family: var(--font-geist-mono);
   font-feature-settings: "'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'cv03', 'cv30', 'cv60', 'cv61', 'calt', 'zero', 'dlig'";
   font-variant-ligatures: common-ligatures;
-  font-size: 16px;
-  line-height: 1.5;
+  font-weight: 300;
   color: var(--default-font-color);
 }
 

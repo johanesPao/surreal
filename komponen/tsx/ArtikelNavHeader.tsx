@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  IconLogin2,
   IconMenu,
   IconX,
 } from "@tabler/icons-react";
@@ -84,8 +85,8 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
             {navOpen.value ? <IconX size={iconSize}/> : <IconMenu size={iconSize} />}
           </div>
           <div className='flex flex-col flex-grow items-center'>
-            <p className='text-[14px] lg:text-[16px] font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
-            <p className='lg:text-[8px] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
+            <p className='text-[1rem] font-bold font-monaspaceKrypton'>{frontMatter.title}</p>
+            <p className='lg:text-[0.6rem] hidden lg:block font-monaspaceArgon' suppressHydrationWarning>
               {new Intl.DateTimeFormat("en-ID", opsiStringDate).format(
                 new Date(frontMatter.createdAt)
               )}
@@ -105,7 +106,7 @@ const ArticleNavHeader = ({ frontMatter, session }: ArticleNavHeaderProps) => {
               />
             ) : (
               <SignInWrapperComp>
-                <span className="text-sm">Sign In</span>
+                <IconLogin2 />
               </SignInWrapperComp>
             )}
           </div>

@@ -17,11 +17,11 @@ export const ImageBlock = ({ url, caption = "" }: ImageProps) => {
         />
       </Suspense>
       {caption !== "" && (
-        <div className='flex flex-row relative italic font-robotoMono text-slate-200 text-start opacity-40 grow'>
+        <div className='flex flex-row relative italic font-geistMono text-slate-200 text-start opacity-40 grow'>
           <span className='absolute top-0 -left-9 text-9xl font-bizUDMincho opacity-[0.25]'>
             "
           </span>
-          <span className='grow text-[12px]'>{caption}</span>
+          <span className='grow text-[0.8rem]'>{caption}</span>
         </div>
       )}
     </div>

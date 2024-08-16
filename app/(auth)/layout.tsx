@@ -5,6 +5,7 @@ import {
   inconsolata,
   wotfard,
   bizUDMincho,
+  geistMono
 } from "@/app/_fonts/fonts";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -28,6 +29,7 @@ export default function RootLayout({
         ${inconsolata.variable}
         ${wotfard.variable}
         ${bizUDMincho.variable}
+        ${geistMono.variable}
       `}
     >
       <head></head>
