@@ -19,7 +19,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
   return (
     <div className="fixed top-[45%] right-0 flex h-[calc(100%-45%-42px)]">
       <div
-        className="relative top-[80%] h-[40px] px-2 place-content-center cursor-pointer"
+        className="relative top-[85%] w-[60px] h-[40px] px-2 place-content-center cursor-pointer"
         onClick={() => commentNavOpen.value = true}
       >
         <motion.span
