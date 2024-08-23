@@ -49,9 +49,12 @@ const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount,
 
     effect(() => {
         if (document) {
-            document.addEventListener('contextmenu', (e) => {
+            const elemEditor = document.getElementById('editor')
+            if (elemEditor) {
+              elemEditor.addEventListener('contextmenu', (e) => {
                 e.preventDefault()
             })
+            }
         }
     })
 
@@ -82,7 +85,7 @@ const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount,
             Superscript
         ],
         enableContentCheck: true,
-        
+
         editorProps: {
             attributes: {
                 class: (
@@ -116,7 +119,7 @@ const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount,
             content: editor.getJSON(),
             }
         }
-        
+
         const insertedComment = await createComment(JSON.stringify(insertCommentData))
 
         if (insertedComment) {
@@ -176,7 +179,7 @@ const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount,
                 />
             </div>
         </div>
-        <div className="flex flex-col overflow-y-scroll grow">
+        <div className="flex flex-col overflow-y-scroll w-full">
             <div className="font-robotoMono h-full">
                 {editor && (
                     <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
@@ -204,7 +207,7 @@ const RichTextEditor = ({ userSession, artikelId, content, charCount, wordCount,
                         </div>
                     </FloatingMenu>
                 )}
-                <EditorContent editor={editor} className="h-full"/>
+                <EditorContent editor={editor} className="h-full" id="editor"/>
             </div>
         </div>
         </div>
