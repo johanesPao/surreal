@@ -74,7 +74,7 @@ export const geistSans = localFont({
 })
 
 export const geistMono = localFont({
-  src: "./GeistMonoVf.ttf",
+  src: "./GeistMonoVF.ttf",
   display: "swap",
   variable: "--font-geist-mono",
 })
