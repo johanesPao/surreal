@@ -30,7 +30,6 @@ const charThresholdColor = signal<
   "text-green-500" | "text-orange-500" | "text-red-500"
 >("text-green-500");
 const commentList = signal<InferComment[]>([]);
-const toggleFetchComments = signal(false);
 
 const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
   const [diDesktop] = useDesktopOrMobile();
@@ -40,7 +39,6 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
     const comments = await getCommentByArticleID(artikelId);
     if (comments) {
       commentList.value = comments;
-      toggleFetchComments.value = false;
     }
   };
 
@@ -59,13 +57,12 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
         if (postComment) {
           console.log(`postComment is ${postComment}`);
           commentNavOpen.value = false;
-          toggleFetchComments.value = true;
+          getComments();
         }
       } catch (kesalahan) {
         console.log(kesalahan);
       }
     }
-    console.log(commentContent.value);
   };
 
   effect(() => {
@@ -81,12 +78,6 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
   useEffect(() => {
     getComments();
   }, []);
-
-  useEffect(() => {
-    if (toggleFetchComments) {
-      getComments();
-    }
-  }, [toggleFetchComments]);
 
   return (
     <>
@@ -189,7 +180,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                         </p>
                       </div>
                       <div
-                        className={`flex text-[0.7rem] p-2 rounded-md group ${postButton.value ? "bg-green-700 hover:bg-green-600 cursor pointer" : "bg-stone-700 opacity-50 cursor-not-allowed"}`}
+                        className={`flex text-[0.7rem] p-2 rounded-md group ${postButton.value ? "bg-green-700 hover:bg-green-600 cursor-pointer" : "bg-stone-700 opacity-50 cursor-not-allowed"}`}
                         onClick={() =>
                           postButton.value ? postComment() : null
                         }

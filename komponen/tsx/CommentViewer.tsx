@@ -15,7 +15,6 @@ type CommentViewerProps = {
 };
 
 const CommentViewer = ({ content }: CommentViewerProps) => {
-  console.log(content);
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
