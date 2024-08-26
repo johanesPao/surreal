@@ -8,6 +8,10 @@ import { getAccountById } from "@/app/api/db/account";
 import Image from "next/image";
 import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
 import CommentModeration from "./CommentModeration";
+import {
+  opsiDateSimple,
+  opsiStringDate,
+} from "@/app/_interface-props/_format.props";
 
 type CommentCardProps = {
   comment: InferComment;
@@ -34,7 +38,7 @@ const CommentCard = ({ comment }: CommentCardProps) => {
   }, [comment.accountId]);
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full gap-2">
       <div className="flex justify-between w-full">
         <div className="flex gap-4 items-center">
           <Image
@@ -53,14 +57,18 @@ const CommentCard = ({ comment }: CommentCardProps) => {
             </span>
             {!diDesktop ? (
               <span className="text-[0.8rem]">
-                {comment.createdAt!.toLocaleString("en-id")}
+                {new Intl.DateTimeFormat("en-ID", opsiDateSimple).format(
+                  new Date(comment.createdAt!),
+                )}
               </span>
             ) : null}
           </div>
         </div>
         {diDesktop ? (
           <span className="text-[0.8rem]">
-            {comment.createdAt!.toLocaleString("en-id")}
+            {new Intl.DateTimeFormat("en-ID", opsiDateSimple).format(
+              new Date(comment.createdAt!),
+            )}
           </span>
         ) : null}
       </div>

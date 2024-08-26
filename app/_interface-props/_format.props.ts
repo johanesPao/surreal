@@ -3,3 +3,9 @@ export const opsiStringDate: Intl.DateTimeFormatOptions = {
   timeStyle: "long",
   timeZone: "Asia/Jakarta",
 };
+
+export const opsiDateSimple: Intl.DateTimeFormatOptions = {
+  dateStyle: "full",
+  timeStyle: "short",
+  timeZone: "Asia/Jakarta",
+};
