@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import { db } from "@/drizzle/db";
 import { InferAccount, InsertAccount, accounts } from "@/schema";
@@ -6,20 +6,20 @@ import { and, count, eq, sql } from "drizzle-orm";
 
 export async function getAccountCount(
   provider: InferAccount["provider"],
-  providerId: string
+  providerId: string,
 ): Promise<number> {
   const response = await db
     .select({ value: count(accounts.accountId) })
     .from(accounts)
     .where(
-      and(eq(accounts.provider, provider), eq(accounts.providerId, providerId))
+      and(eq(accounts.provider, provider), eq(accounts.providerId, providerId)),
     );
 
   return response[0].value;
 }
 
 export async function createAccount(
-  account: InsertAccount
+  account: InsertAccount,
 ): Promise<InsertAccount> {
   const insertedAccount = await db
     .insert(accounts)
@@ -30,4 +30,12 @@ export async function createAccount(
     .returning();
 
   return insertedAccount[0];
+}
+
+export async function getAccountById(accountId: string): Promise<InferAccount> {
+  const response = await db
+    .select()
+    .from(accounts)
+    .where(eq(accounts.accountId, accountId));
+  return response[0];
 }

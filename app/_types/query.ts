@@ -1,7 +1,8 @@
-import { InferAccount, InsertComment } from "@/schema"
+import { InferAccount, InsertComment } from "@/schema";
 
 export type TInsertCommentData = {
-    provider: InferAccount['provider'],
-    providerId: string,
-    commentData: InsertComment
-}
+  provider: InferAccount["provider"];
+  providerId: string;
+  articleId: string;
+  content: string;
+};
