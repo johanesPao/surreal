@@ -2,7 +2,7 @@
 
 import { InferAccount, InferComment } from "@/schema";
 import CommentViewer from "./CommentViewer";
-import { effect, signal } from "@preact-signals/safe-react";
+import { signal } from "@preact-signals/safe-react";
 import { useEffect } from "react";
 import { getAccountById } from "@/app/api/db/account";
 import Image from "next/image";
@@ -12,14 +12,16 @@ import {
   opsiDateSimple,
   opsiStringDate,
 } from "@/app/_interface-props/_format.props";
+import { Session } from "next-auth";
 
 type CommentCardProps = {
+  session: Session | null;
   comment: InferComment;
 };
 
 const accountState = signal<InferAccount | null>(null);
 
-const CommentCard = ({ comment }: CommentCardProps) => {
+const CommentCard = ({ session, comment }: CommentCardProps) => {
   const [diDesktop] = useDesktopOrMobile();
 
   const getAccountId = async (id: string) => {
@@ -74,7 +76,7 @@ const CommentCard = ({ comment }: CommentCardProps) => {
       </div>
       <CommentViewer content={JSON.stringify(comment.content)} />
       <hr className="border-stone-700" />
-      <CommentModeration />
+      <CommentModeration session={session} accountId={comment.accountId} />
     </div>
   );
 };

@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { Session } from "next-auth";
-import Image from "next/image";
-import Link from "next/link";
-import RichTextEditor from "./RichTextEditor";
-import { effect, signal } from "@preact-signals/safe-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { IconMessage2, IconSquareRoundedX } from "@tabler/icons-react";
-import useDesktopOrMobile from "@/app/_lib/_hooks_wrapper/useDesktopOrMobile";
-import { createComment, getCommentByArticleID } from "@/app/api/db/comment";
-import { TInsertCommentData } from "@/app/_types/query";
-import { InferAccount, InferComment } from "@/schema";
-import CommentList from "./CommentList";
-import NoComments from "./NoComments";
-import { useEffect } from "react";
-import CommentSection from "./CommentSection";
+import { Session } from 'next-auth';
+import Image from 'next/image';
+import Link from 'next/link';
+import RichTextEditor from './RichTextEditor';
+import { effect, signal } from '@preact-signals/safe-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { IconMessage2, IconSquareRoundedX } from '@tabler/icons-react';
+import useDesktopOrMobile from '@/app/_lib/_hooks_wrapper/useDesktopOrMobile';
+import { createComment, getCommentByArticleID } from '@/app/api/db/comment';
+import { TInsertCommentData } from '@/app/_types/query';
+import { InferAccount, InferComment } from '@/schema';
+import CommentList from './CommentList';
+import NoComments from './NoComments';
+import { useEffect } from 'react';
+import CommentSection from './CommentSection';
 
 type ArtikelCommentProps = {
   session: Session | null;
@@ -22,13 +22,13 @@ type ArtikelCommentProps = {
 };
 
 const commentNavOpen = signal(false);
-const commentContent = signal("");
+const commentContent = signal('');
 const postButton = signal(false);
 const characterCount = signal(0);
 const wordCount = signal(0);
 const charThresholdColor = signal<
-  "text-green-500" | "text-orange-500" | "text-red-500"
->("text-green-500");
+  'text-green-500' | 'text-orange-500' | 'text-red-500'
+>('text-green-500');
 const commentList = signal<InferComment[]>([]);
 
 const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
@@ -48,7 +48,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
       try {
         console.log(session);
         const commentData: TInsertCommentData = {
-          provider: session.user.provider as InferAccount["provider"],
+          provider: session.user.provider as InferAccount['provider'],
           providerId: session.user.id,
           articleId: artikelId,
           content: commentContent.value,
@@ -69,10 +69,10 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
     const remainingChar = characterLimit - characterCount.value;
     const percentageLeft = remainingChar / characterLimit;
     percentageLeft > 0.5
-      ? (charThresholdColor.value = "text-green-500")
+      ? (charThresholdColor.value = 'text-green-500')
       : percentageLeft > 0
-        ? (charThresholdColor.value = "text-orange-500")
-        : (charThresholdColor.value = "text-red-500");
+        ? (charThresholdColor.value = 'text-orange-500')
+        : (charThresholdColor.value = 'text-red-500');
   });
 
   useEffect(() => {
@@ -81,12 +81,12 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
 
   return (
     <>
-      <CommentSection comments={commentList.value} />
+      <CommentSection session={session} comments={commentList.value} />
       <div
-        className={`fixed top-[45%] right-0 flex ${diDesktop ? "h-[calc(100%-45%)] z-[54]" : "h-[calc(100%-45%-42px)]"}`}
+        className={`fixed top-[45%] right-0 flex ${diDesktop ? 'h-[calc(100%-45%)] z-[54]' : 'h-[calc(100%-45%-42px)]'}`}
       >
         <div
-          className={`relative ${diDesktop ? "top-[90%]" : "top-[85%]"} w-[60px] h-[40px] px-2 place-content-center cursor-pointer`}
+          className={`relative ${diDesktop ? 'top-[90%]' : 'top-[85%]'} w-[60px] h-[40px] px-2 place-content-center cursor-pointer`}
           onClick={() => (commentNavOpen.value = true)}
         >
           <motion.span
@@ -96,7 +96,7 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
               duration: 2,
               repeat: Infinity,
               repeatDelay: 0.5,
-              ease: "easeOut",
+              ease: 'easeOut',
             }}
           >
             <IconMessage2 className="text-green-500" />
@@ -106,13 +106,13 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
           {commentNavOpen.value && (
             <motion.div
               className="w-screen h-full bg-stone-900/100 px-[5%] lg:px-[2.5%] py-4"
-              initial={{ x: "100%" }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: '100%' }}
               transition={{
-                ease: "easeInOut",
+                ease: 'easeInOut',
                 duration: 1,
-                type: "spring",
+                type: 'spring',
                 damping: 20,
               }}
             >
@@ -124,8 +124,8 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                       <div className="bg-pitch-black rounded-md p-2 hover:scale-105 transition-all group">
                         <Link
                           href={{
-                            pathname: "/auth/signin",
-                            query: { originUrl: "/artikel/arrays-in-excel" },
+                            pathname: '/auth/signin',
+                            query: { originUrl: '/artikel/arrays-in-excel' },
                           }}
                         >
                           login
@@ -166,21 +166,21 @@ const ArtikelComment = ({ session, artikelId }: ArtikelCommentProps) => {
                           <span className={`${charThresholdColor.value}`}>
                             {(
                               characterLimit - characterCount.value
-                            ).toLocaleString("en-us")}
-                          </span>{" "}
-                          {`character${characterLimit - characterCount.value <= 1 ? "" : "s"} left`}
+                            ).toLocaleString('en-us')}
+                          </span>{' '}
+                          {`character${characterLimit - characterCount.value <= 1 ? '' : 's'} left`}
                         </p>
                         <p>
                           <span className="text-white">
                             {wordCount.value === 0
-                              ? "Empty"
-                              : wordCount.value.toLocaleString("en-us")}
-                          </span>{" "}
-                          {`word${wordCount.value <= 1 ? "" : "s"}`}
+                              ? 'Empty'
+                              : wordCount.value.toLocaleString('en-us')}
+                          </span>{' '}
+                          {`word${wordCount.value <= 1 ? '' : 's'}`}
                         </p>
                       </div>
                       <div
-                        className={`flex text-[0.7rem] p-2 rounded-md group ${postButton.value ? "bg-green-700 hover:bg-green-600 cursor-pointer" : "bg-stone-700 opacity-50 cursor-not-allowed"}`}
+                        className={`flex text-[0.7rem] p-2 rounded-md group ${postButton.value ? 'bg-green-700 hover:bg-green-600 cursor-pointer' : 'bg-stone-700 opacity-50 cursor-not-allowed'}`}
                         onClick={() =>
                           postButton.value ? postComment() : null
                         }
